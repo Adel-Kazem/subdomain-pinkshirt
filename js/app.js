@@ -182,4 +182,33 @@ document.addEventListener('alpine:init', () => {
             }
         };
     });
+
+    Alpine.store('urlUtils', {
+        // Find a product by slug
+        findProductBySlug(slug) {
+            return PRODUCTS.find(product => product.slug === slug);
+        },
+
+        // Find a category by slug
+        findCategoryBySlug(slug) {
+            return CATEGORIES.find(category => category.slug === slug);
+        },
+
+        // Get URL parameter
+        getUrlParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        },
+
+        // Update URL with slug without page reload
+        updateUrlParameter(key, value) {
+            const url = new URL(window.location);
+            if (value) {
+                url.searchParams.set(key, value);
+            } else {
+                url.searchParams.delete(key);
+            }
+            window.history.pushState({}, '', url);
+        }
+    });
 });

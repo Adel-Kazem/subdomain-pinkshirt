@@ -1,8 +1,49 @@
 // product-page.js - Alpine.js Components for Product Detail Page
 document.addEventListener('alpine:init', () => {
+
+    Alpine.store('productData', {
+        currentProduct: null,
+
+        init() {
+            // Get the slug from URL
+            const slug = new URLSearchParams(window.location.search).get('slug');
+            const id = new URLSearchParams(window.location.search).get('id');
+
+            // Try to load by slug first (preferred)
+            if (slug && typeof PRODUCTS !== 'undefined') {
+                this.currentProduct = PRODUCTS.find(p => p.slug === slug);
+            }
+
+            // Fallback to ID if needed (for backward compatibility)
+            if (!this.currentProduct && id && typeof PRODUCTS !== 'undefined') {
+                const productId = parseInt(id);
+                this.currentProduct = PRODUCTS.find(p => p.id === productId);
+
+                // If found by ID, redirect to slug URL for SEO
+                if (this.currentProduct) {
+                    window.history.replaceState(
+                        {},
+                        document.title,
+                        `product.html?slug=${this.currentProduct.slug}`
+                    );
+                }
+            }
+
+            // Set default product if nothing found
+            if (!this.currentProduct && typeof PRODUCTS !== 'undefined' && PRODUCTS.length > 0) {
+                this.currentProduct = PRODUCTS[0];
+            }
+
+            // Update title and breadcrumb
+            if (this.currentProduct) {
+                document.title = `${this.currentProduct.name} - pinkJeans`;
+            }
+        }
+    });
+
     /**
      * Product Detail Component
-     * Handles product variants, options selection
+     * Handles product variants, options selection, pricing, and stock
      */
     Alpine.data('productDetail', (config = {}) => {
         return {
@@ -21,28 +62,57 @@ document.addEventListener('alpine:init', () => {
                 }
             },
 
+            // Utility functions
+            formatPrice(price) {
+                return '$' + parseFloat(price).toFixed(2);
+            },
+
+            formatOptionName(name) {
+                return name.replace(/_/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+            },
+
+            formatFeatureKey(key) {
+                return key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ');
+            },
+
             // Get current variant key based on selected options
             getVariantKey() {
-                const optionValues = Object.values(this.selectedOptions);
+                if (!this.product.hasVariants) return null;
+
+                // Get option values in the order of options
+                const optionKeys = Object.keys(this.product.options);
+                const optionValues = optionKeys.map(key => this.selectedOptions[key]);
+
+                // Join them with | separator
                 return optionValues.join('|');
             },
 
             // Check if current variant is in stock
             isVariantInStock() {
-                const variantKey = this.getVariantKey();
-                if (this.product.option_variants_stock && this.product.option_variants_stock[variantKey]) {
-                    return this.product.option_variants_stock[variantKey] > 0;
+                if (!this.product.hasVariants) {
+                    return this.product.stock > 0;
                 }
+
+                const variantKey = this.getVariantKey();
+                if (variantKey && this.product.option_variants_stock) {
+                    return (this.product.option_variants_stock[variantKey] || 0) > 0;
+                }
+
                 return this.product.stock > 0;
             },
 
             // Get stock level for current variant
             getVariantStock() {
-                const variantKey = this.getVariantKey();
-                if (this.product.option_variants_stock && this.product.option_variants_stock[variantKey]) {
-                    return this.product.option_variants_stock[variantKey];
+                if (!this.product.hasVariants) {
+                    return this.product.stock;
                 }
-                return this.product.stock;
+
+                const variantKey = this.getVariantKey();
+                if (variantKey && this.product.option_variants_stock) {
+                    return this.product.option_variants_stock[variantKey] || 0;
+                }
+
+                return 0;
             },
 
             // Get price for current variant
@@ -66,11 +136,12 @@ document.addEventListener('alpine:init', () => {
 
             // Get shipping cost for current variant
             getVariantShippingCost() {
-                let shippingCost = this.product.base_shipping_cost || 0;
-
+                // Check if shipping is free
                 if (this.product.free_shipping) {
                     return 0;
                 }
+
+                let shippingCost = this.product.base_shipping_cost || 0;
 
                 // Apply shipping adjustments based on selected options
                 if (this.product.option_shipping_adjustments) {
@@ -84,63 +155,61 @@ document.addEventListener('alpine:init', () => {
                     });
                 }
 
-                return shippingCost;
+                // If an option adjustment makes shipping negative or 0, it's free
+                return Math.max(0, shippingCost);
             },
 
-            // Get images for current variant
-            getVariantImages() {
-                const variantKey = this.getVariantKey();
+            // Get product weight (with overrides)
+            getProductWeight() {
+                let weight = {...this.product.weight};
 
-                // Check if there's a specific image for this exact variant combination
-                if (this.product.variant_images && this.product.variant_images[variantKey]) {
-                    const variantImage = this.product.variant_images[variantKey];
-                    return Array.isArray(variantImage) ? variantImage : [variantImage];
-                }
-
-                // Check for option-specific images
-                let optionImages = [];
-                if (this.product.option_images) {
+                if (this.product.option_dimension_overrides) {
                     Object.entries(this.selectedOptions).forEach(([optionName, optionValue]) => {
                         if (
-                            this.product.option_images[optionName] &&
-                            this.product.option_images[optionName][optionValue]
+                            this.product.option_dimension_overrides[optionName] &&
+                            this.product.option_dimension_overrides[optionName][optionValue] &&
+                            this.product.option_dimension_overrides[optionName][optionValue].weight
                         ) {
-                            const images = this.product.option_images[optionName][optionValue];
-                            optionImages = optionImages.concat(images);
+                            weight = this.product.option_dimension_overrides[optionName][optionValue].weight;
                         }
                     });
                 }
 
-                // If option-specific images found, return those
-                if (optionImages.length > 0) {
-                    return optionImages;
+                return weight;
+            },
+
+            // Get product dimensions (with overrides)
+            getProductDimensions() {
+                let dimensions = {...this.product.dimensions};
+
+                if (this.product.option_dimension_overrides) {
+                    Object.entries(this.selectedOptions).forEach(([optionName, optionValue]) => {
+                        if (
+                            this.product.option_dimension_overrides[optionName] &&
+                            this.product.option_dimension_overrides[optionName][optionValue] &&
+                            this.product.option_dimension_overrides[optionName][optionValue].dimensions
+                        ) {
+                            dimensions = this.product.option_dimension_overrides[optionName][optionValue].dimensions;
+                        }
+                    });
                 }
 
-                // Otherwise return default product images
-                return Array.isArray(this.product.images) ? this.product.images : [this.product.images];
+                return dimensions;
             },
 
-            // Add current product configuration to cart
-            addToCart() {
-                Alpine.store('cart').addItem(
-                    this.product,
-                    this.quantity,
-                    this.selectedOptions
-                );
-            },
+            // Update variant information
+            updateVariantInfo() {
+                // This triggers reactivity and updates the UI
+                this.selectedOptions = {...this.selectedOptions};
 
-            // Decrease quantity
-            decreaseQuantity() {
-                if (this.quantity > 1) {
-                    this.quantity--;
-                }
-            },
-
-            // Increase quantity
-            increaseQuantity() {
-                const maxStock = this.getVariantStock();
-                if (this.quantity < maxStock) {
-                    this.quantity++;
+                // Update the product viewer
+                const productViewer = document.querySelector('[x-data*="productViewer"]');
+                if (productViewer && this.product.hasVariants) {
+                    const viewerData = Alpine.$data(productViewer);
+                    if (viewerData) {
+                        viewerData.selectedOptions = {...this.selectedOptions};
+                        viewerData.selectedImage = ''; // Force image update
+                    }
                 }
             },
 
@@ -152,37 +221,36 @@ document.addEventListener('alpine:init', () => {
                 const tempSelection = {...this.selectedOptions};
                 tempSelection[optionType] = optionValue;
 
+                // Create variant key
+                const optionKeys = Object.keys(this.product.options);
+                const optionValues = optionKeys.map(key => tempSelection[key]);
+                const variantKey = optionValues.join('|');
+
                 // Check if this combination has stock
-                const parts = [];
-                let complete = true;
-
-                for (const option in this.product.options) {
-                    if (!tempSelection[option]) {
-                        complete = false;
-                        break;
-                    }
-                    parts.push(tempSelection[option]);
-                }
-
-                if (!complete) return true; // If incomplete, assume available
-
-                const key = parts.join('|');
-                return (this.product.option_variants_stock[key] || 0) > 0;
+                return (this.product.option_variants_stock[variantKey] || 0) > 0;
             },
 
-            // Get class for option buttons based on availability
-            getOptionButtonClass(optionType, optionValue) {
-                const isSelected = this.selectedOptions[optionType] === optionValue;
-                const isAvailable = this.isOptionValueAvailable(optionType, optionValue);
+            // Add to cart
+            addToCart() {
+                Alpine.store('cart').addItem(
+                    this.product,
+                    this.quantity,
+                    this.selectedOptions
+                );
+            },
 
-                if (isSelected && isAvailable) {
-                    return 'border-indigo-500 bg-indigo-50 text-indigo-700';
-                } else if (isSelected && !isAvailable) {
-                    return 'border-red-500 bg-red-50 text-red-700';
-                } else if (!isSelected && isAvailable) {
-                    return 'border-gray-300 text-gray-700 hover:border-indigo-500';
-                } else {
-                    return 'border-gray-300 text-gray-400 bg-gray-50 cursor-not-allowed';
+            // Increase quantity
+            increaseQuantity() {
+                const maxStock = this.getVariantStock();
+                if (this.quantity < maxStock) {
+                    this.quantity++;
+                }
+            },
+
+            // Decrease quantity
+            decreaseQuantity() {
+                if (this.quantity > 1) {
+                    this.quantity--;
                 }
             }
         };
@@ -245,9 +313,17 @@ document.addEventListener('alpine:init', () => {
                 }
             },
 
+            getVariantKey() {
+                if (!this.product.hasVariants) return null;
+
+                const optionKeys = Object.keys(this.product.options);
+                const optionValues = optionKeys.map(key => this.selectedOptions[key]);
+
+                return optionValues.join('|');
+            },
+
             hasThumbnails() {
                 let count = 0;
-
                 // Count main images
                 count += this.product.images ? this.product.images.length : 0;
 
@@ -283,26 +359,16 @@ document.addEventListener('alpine:init', () => {
                         return this.selectedImage;
                     }
 
-                    // Check if there's a specific variant image
-                    if (this.product.variant_images) {
-                        // Try different combinations for variant images
-                        const colorOption = this.selectedOptions['color'];
-                        const designOption = this.selectedOptions['design'];
-
-                        // Try color + design combination
-                        if (colorOption && designOption) {
-                            const key = `${colorOption}|${designOption}`;
-                            if (this.product.variant_images[key]) {
-                                const variantImage = this.product.variant_images[key];
-                                return Array.isArray(variantImage) ? variantImage[0] : variantImage;
-                            }
-                        }
+                    // Check for variant-specific images
+                    const variantKey = this.getVariantKey();
+                    if (variantKey && this.product.variant_images && this.product.variant_images[variantKey]) {
+                        const variantImage = this.product.variant_images[variantKey];
+                        return Array.isArray(variantImage) ? variantImage[0] : variantImage;
                     }
 
                     // Check for option-specific images
                     if (this.product.option_images) {
-                        for (const option in this.selectedOptions) {
-                            const value = this.selectedOptions[option];
+                        for (const [option, value] of Object.entries(this.selectedOptions)) {
                             if (
                                 this.product.option_images[option] &&
                                 this.product.option_images[option][value] &&
@@ -327,17 +393,14 @@ document.addEventListener('alpine:init', () => {
 
             selectImage(image) {
                 this.selectedImage = image;
-                this.resetZoom(); // Reset zoom when changing images
+                this.resetZoom();
             },
 
             selectOption(option, value) {
                 this.selectedOptions[option] = value;
-
-                // Reset selected image to force selection based on variant
                 this.selectedImage = '';
-                this.resetZoom(); // Reset zoom when changing options
+                this.resetZoom();
 
-                // Scroll to the thumbnail related to this option
                 this.$nextTick(() => {
                     this.scrollToOptionThumbnails();
                 });
@@ -349,7 +412,6 @@ document.addEventListener('alpine:init', () => {
                 if (!container) return;
 
                 const scrollAmount = container.clientWidth * 0.75;
-
                 if (direction === 'left') {
                     container.scrollLeft -= scrollAmount;
                 } else {
@@ -369,34 +431,15 @@ document.addEventListener('alpine:init', () => {
                 this.isScrollRightEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 5;
             },
 
-            // Scroll to Option Thumbnails
             scrollToOptionThumbnails() {
                 const container = this.$refs.thumbnailsContainer;
                 if (!container) return;
 
-                // Find which thumbnail corresponds to the currently selected options
-                let targetThumbnail = null;
-                const thumbnails = container.querySelectorAll('div[class*="cursor-pointer"]');
-
-                // Look for thumbnails that match current options
-                if (targetThumbnail) {
-                    const containerRect = container.getBoundingClientRect();
-                    const thumbnailRect = targetThumbnail.getBoundingClientRect();
-
-                    // Calculate position to center the thumbnail in the container
-                    const scrollLeftPosition = container.scrollLeft +
-                        (thumbnailRect.left - containerRect.left) -
-                        (containerRect.width / 2 - thumbnailRect.width / 2);
-
-                    container.scrollTo({
-                        left: scrollLeftPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                // For now, just check scroll position
+                this.checkScrollPosition();
             },
 
             // Image Zoom Functionality
-            // Desktop zoom handlers
             mouseMove(e) {
                 if (!this.zoomed || this.isTouchDevice) return;
 
@@ -428,12 +471,10 @@ document.addEventListener('alpine:init', () => {
                 if (e.touches.length > 1) return;
 
                 const now = Date.now();
-
                 // Double tap detection
                 if (now - this.lastTap < 300) {
                     // Toggle zoom state
                     this.zoomed = !this.zoomed;
-
                     if (this.zoomed) {
                         // Set zoom origin to touch point
                         const img = this.$refs.mainImage;
@@ -452,7 +493,6 @@ document.addEventListener('alpine:init', () => {
                     } else {
                         this.resetZoom();
                     }
-
                     e.preventDefault();
                 } else if (this.zoomed) {
                     // Start dragging
@@ -513,7 +553,6 @@ document.addEventListener('alpine:init', () => {
                 if (!img) return;
 
                 const rect = img.getBoundingClientRect();
-
                 // Calculate how much the image can be panned
                 this.maxPanX = (rect.width * (this.scale - 1)) / 2;
                 this.minPanX = -this.maxPanX;
@@ -540,12 +579,15 @@ document.addEventListener('alpine:init', () => {
             // Send inquiry about current product
             inquireAboutProduct() {
                 // Get product information from parent component
-                const productDetail = this.$el.closest('[x-data="productDetail"]');
+                const productDetail = this.$el.closest('[x-data*="productDetail"]');
                 if (!productDetail) return this.sendSimpleInquiry();
 
-                const product = Alpine.bound(productDetail, 'productDetail').product;
-                const quantity = Alpine.bound(productDetail, 'productDetail').quantity;
-                const selectedOptions = Alpine.bound(productDetail, 'productDetail').selectedOptions;
+                const productData = Alpine.$data(productDetail);
+                if (!productData) return this.sendSimpleInquiry();
+
+                const product = productData.product;
+                const quantity = productData.quantity;
+                const selectedOptions = productData.selectedOptions;
 
                 // Create the message
                 let message = `Hello, I'm interested in: ${product.name}`;
@@ -555,12 +597,9 @@ document.addEventListener('alpine:init', () => {
                     message += ` (Quantity: ${quantity})`;
                 }
 
-                // Add price information if available
-                if (product.salePrice) {
-                    message += `\nPrice: $${product.salePrice.toFixed(2)} (On Sale)`;
-                } else if (product.base_price || product.price) {
-                    message += `\nPrice: $${(product.base_price || product.price).toFixed(2)}`;
-                }
+                // Add price information
+                const variantPrice = productData.getVariantPrice();
+                message += `\nPrice: $${variantPrice.toFixed(2)}`;
 
                 // Add selected options if any
                 if (selectedOptions && Object.keys(selectedOptions).length > 0) {
@@ -570,11 +609,19 @@ document.addEventListener('alpine:init', () => {
                     });
                 }
 
+                // Add shipping information
+                const shippingCost = productData.getVariantShippingCost();
+                message += `\nShipping: ${shippingCost === 0 ? 'Free' : '$' + shippingCost.toFixed(2)}`;
+
+                // Add stock status
+                const stock = productData.getVariantStock();
+                message += `\nStock status: ${stock > 0 ? `${stock} available` : 'Out of stock'}`;
+
                 // Add product URL if available
                 const currentUrl = window.location.href;
                 message += `\n\nProduct link: ${currentUrl}`;
 
-                // Add closing
+                // Add closing message
                 message += '\n\nCould you provide me with more information about this product?';
 
                 // Send the message
@@ -594,3 +641,4 @@ document.addEventListener('alpine:init', () => {
         };
     });
 });
+

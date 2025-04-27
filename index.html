@@ -3,505 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pinkshirt.revunova.net - Premium Meats Shop</title>
-    <meta name="description" content="Premium quality meats delivered to your door">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://via.placeholder.com/32x32">
-
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <!-- Alpine.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.0/dist/cdn.min.js" defer></script>
-
+    <title>pinkDress - Elegant Women's Fashion</title>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B81',
+                        secondary: '#FFC0CB',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- AlpineJS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <!-- Custom CSS -->
-    <link href="css/main.css" rel="stylesheet">
-
-    <!-- Products and Categories Data -->
-    <script src="js/products.js"></script>
-    <script src="js/categories.js"></script>
-
-    <!-- App JS -->
-    <script src="js/app.js"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(255, 107, 129, 0.1), rgba(255, 107, 129, 0.05)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gray-50 text-gray-800">
-<div x-data="{ mobileMenuOpen: false, cartOpen: false }">
-    <!-- Header Navigation -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo -->
-                <a href="index.html" class="text-2xl font-bold text-indigo-600">
-                    pinkshirt.revunova.net
-                </a>
+<body class="bg-gray-50 min-h-screen flex flex-col" x-data>
+<!-- SVG Sprite Definitions -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- WhatsApp Icon -->
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </symbol>
+    <!-- Cart Icon -->
+    <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </symbol>
+    <!-- Menu Icon -->
+    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+    </symbol>
+    <!-- Arrow Up Icon -->
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 15l7-7 7 7" />
+    </symbol>
+    <!-- Close/X Icon -->
+    <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+    </symbol>
+</svg>
 
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-indigo-600 font-medium">Home</a>
-                    <a href="products.html" class="hover:text-indigo-600 transition">Products</a>
-                    <a href="#" class="hover:text-indigo-600 transition">About</a>
-                    <a href="#" class="hover:text-indigo-600 transition">Contact</a>
-                </nav>
-
-                <!-- Cart & Mobile Menu Buttons -->
-                <div class="flex items-center space-x-4">
-                    <!-- Cart Button -->
-                    <button
-                            @click="cartOpen = true"
-                            class="relative p-2 text-gray-700 hover:text-indigo-600"
-                            x-data
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                        </svg>
-                        <span
-                                x-text="Alpine.store('cart').getTotalItems()"
-                                x-show="Alpine.store('cart').getTotalItems() > 0"
-                                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
-                        ></span>
-                    </button>
-
-                    <!-- Mobile Menu Button -->
-                    <button
-                            @click="mobileMenuOpen = !mobileMenuOpen"
-                            class="md:hidden text-gray-700 hover:text-indigo-600"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <nav
-                    x-show="mobileMenuOpen"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 -translate-y-1"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    x-transition:leave="transition ease-in duration-150"
-                    x-transition:leave-start="opacity-100 translate-y-0"
-                    x-transition:leave-end="opacity-0 -translate-y-1"
-                    class="md:hidden py-3 space-y-3"
-            >
-                <a href="index.html" class="block py-2 px-4 text-indigo-600 font-medium">Home</a>
-                <a href="products.html" class="block py-2 px-4 hover:text-indigo-600 transition">Products</a>
-                <a href="#" class="block py-2 px-4 hover:text-indigo-600 transition">About</a>
-                <a href="#" class="block py-2 px-4 hover:text-indigo-600 transition">Contact</a>
+<!-- Header -->
+<header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold">
+                <h1 id="logo-text">
+                    <span id="logo-prefix">pink</span><span id="logo-highlight" class="text-primary">Dress</span>
+                </h1>
+            </a>
+            <!-- Navigation - Desktop -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" id="nav-home" class="text-gray-800 hover:text-primary transition font-medium">Home</a>
+                <a href="products.html" id="nav-products" class="text-gray-800 hover:text-primary transition">Products</a>
+                <a href="#" id="nav-about" class="text-gray-800 hover:text-primary transition">About</a>
+                <a href="#" id="nav-contact" class="text-gray-800 hover:text-primary transition">Contact</a>
             </nav>
-        </div>
-    </header>
-
-    <!-- Hero Banner -->
-    <section class="bg-indigo-700 text-white">
-        <div class="container mx-auto px-4 py-16 md:py-24">
-            <div class="text-center max-w-3xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold mb-6">Premium Quality Meats Delivered to Your Door</h1>
-                <p class="text-xl mb-8">Expertly cut, perfectly aged, and delivered fresh to your doorstep.</p>
-                <a href="products.html" class="inline-block bg-white text-indigo-700 font-bold px-8 py-3 rounded-lg hover:bg-gray-100 transition">
-                    Shop Now
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <!-- Cart icon - Uses UI store directly, no x-data needed -->
+                <a href="cart.html" class="relative">
+                    <svg class="h-6 w-6">
+                        <use href="#icon-cart"></use>
+                    </svg>
+                    <span x-show="$store.cart.getTotalItems() > 0"
+                          x-text="$store.cart.getTotalItems()"
+                          class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        </span>
                 </a>
+                <!-- Mobile menu button - Uses UI store directly -->
+                <button @click="$store.ui.toggleMenu()" class="md:hidden focus:outline-none">
+                    <svg class="h-6 w-6">
+                        <use href="#icon-menu"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation - Uses UI store directly -->
+        <nav x-show="$store.ui.isMenuOpen" x-cloak @click.away="$store.ui.closeMenu()" class="md:hidden py-4">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" id="nav-mobile-home" class="text-gray-800 hover:text-primary transition font-medium">Home</a>
+                <a href="products.html" id="nav-mobile-products" class="text-gray-800 hover:text-primary transition">Products</a>
+                <a href="#" id="nav-mobile-about" class="text-gray-800 hover:text-primary transition">About</a>
+                <a href="#" id="nav-mobile-contact" class="text-gray-800 hover:text-primary transition">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="hero-bg py-20 md:py-32">
+        <div class="container mx-auto px-4">
+            <div class="max-w-lg bg-white/80 backdrop-blur-sm p-8 rounded-lg">
+                <h2 id="hero-subtitle" class="text-primary font-medium mb-2">Spring/Summer Collection 2025</h2>
+                <h1 id="hero-title" class="text-4xl md:text-5xl font-bold mb-4">Elegance in Every Detail</h1>
+                <p id="hero-text" class="text-gray-700 mb-8">Discover our exclusive collection of women's fashion designed for the modern, confident woman who appreciates quality and style.</p>
+                <div class="flex space-x-4">
+                    <a href="products.html" id="hero-cta" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition">Shop Now</a>
+                    <a href="#" id="hero-secondary-cta" class="border border-primary text-primary hover:bg-primary/5 px-6 py-3 rounded-lg font-medium transition">Learn More</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Featured Categories -->
-    <section class="py-12 md:py-16">
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10">Shop by Category</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6" x-data>
-                <template x-for="category in CATEGORIES.filter(c => c.featured)" :key="category.id">
-                    <a :href="'products.html?category=' + category.id" class="group">
-                        <div class="rounded-lg overflow-hidden shadow-md hover:shadow-lg transition">
-                            <div class="relative h-48 bg-gray-200">
-                                <img
-                                        :src="category.imageUrl"
-                                        :alt="category.name"
-                                        class="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                                        onerror="this.src='https://via.placeholder.com/400x300?text=Category';"
-                                >
-                            </div>
-                            <div class="p-4 bg-white text-center">
-                                <h3 class="text-xl font-semibold mb-1" x-text="category.name"></h3>
-                                <p class="text-sm text-gray-600" x-text="category.description"></p>
-                            </div>
-                        </div>
-                    </a>
-                </template>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Products -->
-    <section class="py-12 md:py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10">Featured Products</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" x-data>
-                <template x-for="product in PRODUCTS.filter(p => p.isFeatured).slice(0, 4)" :key="product.id">
-                    <div class="bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition">
-                        <a :href="'product.html?id=' + product.id">
-                            <div class="relative h-48 bg-gray-200">
-                                <img
-                                        :src="Array.isArray(product.images) ? product.images[0] : product.images"
-                                        :alt="product.name"
-                                        class="w-full h-full object-cover"
-                                        onerror="this.src='https://via.placeholder.com/300x300?text=Product';"
-                                >
-                                <div
-                                        x-show="product.isOnSale"
-                                        class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded">
-                                    Sale
-                                </div>
-                            </div>
-                        </a>
-                        <div class="p-4">
-                            <a :href="'product.html?id=' + product.id" class="block mb-2">
-                                <h3 class="text-lg font-semibold hover:text-indigo-600 transition" x-text="product.name"></h3>
-                            </a>
-                            <div class="flex items-center mb-3" x-data="utilities()">
-                                <template x-if="product.salePrice">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="text-red-600 font-bold" x-text="formatPrice(product.salePrice)"></span>
-                                        <span class="text-gray-500 line-through text-sm" x-text="formatPrice(product.base_price || product.price)"></span>
-                                    </div>
-                                </template>
-                                <template x-if="!product.salePrice">
-                                    <span class="font-bold" x-text="formatPrice(product.base_price || product.price)"></span>
-                                </template>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="flex items-center space-x-1">
-                                    <template x-for="i in 5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" :class="i <= product.rating ? 'text-yellow-400' : 'text-gray-300'" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                                        </svg>
-                                    </template>
-                                </div>
-                                <button
-                                        @click.prevent="Alpine.store('cart').addItem(product, 1, {})"
-                                        class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-full"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                    </svg>
-                                </button>
+            <h2 id="categories-title" class="text-3xl font-bold text-center mb-12">Shop by Category</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Category 1 -->
+                <a href="products.html?category=dresses" class="group">
+                    <div class="relative overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Dresses" class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold mb-2">Dresses</h3>
+                                <p class="text-white/80 mb-3">Elegant designs for every occasion</p>
+                                <span class="text-primary bg-white px-4 py-2 rounded-full text-sm font-medium">Shop Now</span>
                             </div>
                         </div>
                     </div>
-                </template>
-            </div>
-
-            <div class="text-center mt-10">
-                <a href="products.html" class="inline-block bg-indigo-600 text-white font-medium px-6 py-3 rounded-lg hover:bg-indigo-700 transition">
-                    View All Products
+                </a>
+                <!-- Category 2 -->
+                <a href="products.html?category=jeans" class="group">
+                    <div class="relative overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Jeans" class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold mb-2">Jeans</h3>
+                                <p class="text-white/80 mb-3">Perfect fit for everyday style</p>
+                                <span class="text-primary bg-white px-4 py-2 rounded-full text-sm font-medium">Shop Now</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Category 3 -->
+                <a href="products.html?category=shirts" class="group">
+                    <div class="relative overflow-hidden rounded-lg">
+                        <img src="https://images.unsplash.com/photo-1564584217132-2271feaeb3c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Shirts" class="w-full h-80 object-cover transform group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <h3 class="text-white text-xl font-bold mb-2">Shirts</h3>
+                                <p class="text-white/80 mb-3">Comfortable & stylish tops</p>
+                                <span class="text-primary bg-white px-4 py-2 rounded-full text-sm font-medium">Shop Now</span>
+                            </div>
+                        </div>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="py-12 md:py-16">
+    <!-- Featured Products -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10">Why Choose Us</h2>
+            <h2 id="featured-title" class="text-3xl font-bold text-center mb-4">Featured Products</h2>
+            <p id="featured-subtitle" class="text-gray-600 text-center mb-12">Discover our most popular styles this season</p>
 
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product cards will be generated from PRODUCTS array -->
+                <!-- These are just placeholders that will be replaced by real data -->
+                <!-- Product 1 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <a href="product.html?slug=floral-summer-dress">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1623609163841-5e69d8c62cc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Floral Summer Dress" class="w-full h-64 object-cover">
+                            <div class="absolute top-0 right-0 bg-primary text-white m-2 px-2 py-1 text-xs font-medium rounded">New</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Floral Summer Dress</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="text-primary font-bold">$49.99</p>
+                                <div class="flex items-center">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-xs text-gray-500 ml-1">(42)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="px-4 pb-4">
+                        <button @click="$store.ui.openWhatsApp('I am interested in the Floral Summer Dress.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
+                            Inquire
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <a href="product.html?slug=high-waist-jeans">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="High Waist Jeans" class="w-full h-64 object-cover">
+                            <div class="absolute top-0 right-0 bg-red-500 text-white m-2 px-2 py-1 text-xs font-medium rounded">Sale</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">High Waist Jeans</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <div>
+                                    <span class="text-primary font-bold">$39.99</span>
+                                    <span class="text-gray-400 line-through text-sm ml-2">$59.99</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="text-yellow-400">★★★★☆</span>
+                                    <span class="text-xs text-gray-500 ml-1">(28)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="px-4 pb-4">
+                        <button @click="$store.ui.openWhatsApp('I am interested in the High Waist Jeans.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
+                            Inquire
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <a href="product.html?slug=cotton-blouse">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cotton Blouse" class="w-full h-64 object-cover">
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Cotton Blouse</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="text-primary font-bold">$29.99</p>
+                                <div class="flex items-center">
+                                    <span class="text-yellow-400">★★★★★</span>
+                                    <span class="text-xs text-gray-500 ml-1">(56)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="px-4 pb-4">
+                        <button @click="$store.ui.openWhatsApp('I am interested in the Cotton Blouse.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
+                            Inquire
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <a href="product.html?slug=maxi-skirt">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Maxi Skirt" class="w-full h-64 object-cover">
+                            <div class="absolute top-0 right-0 bg-purple-500 text-white m-2 px-2 py-1 text-xs font-medium rounded">Best Seller</div>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-medium">Maxi Skirt</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="text-primary font-bold">$45.99</p>
+                                <div class="flex items-center">
+                                    <span class="text-yellow-400">★★★★☆</span>
+                                    <span class="text-xs text-gray-500 ml-1">(37)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="px-4 pb-4">
+                        <button @click="$store.ui.openWhatsApp('I am interested in the Maxi Skirt.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                            <svg class="h-5 w-5 mr-2">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
+                            Inquire
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="products.html" id="view-all-cta" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 id="benefits-title" class="text-3xl font-bold text-center mb-12">Why Shop With Us</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="inline-block p-4 bg-indigo-100 rounded-full mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Premium Quality</h3>
-                    <p class="text-gray-600">Our meats are sourced from trusted farms with the highest standards of animal welfare.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="inline-block p-4 bg-indigo-100 rounded-full mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Fast Delivery</h3>
-                    <p class="text-gray-600">We deliver within 24 hours to ensure your meat arrives fresh at your doorstep.</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="inline-block p-4 bg-indigo-100 rounded-full mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <!-- Benefit 1 -->
+                <div class="text-center p-6">
+                    <div class="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Secure Payment</h3>
-                    <p class="text-gray-600">Multiple payment options available with secure checkout process.</p>
+                    <h3 id="benefit-1-title" class="text-xl font-bold mb-2">Secure Payment</h3>
+                    <p id="benefit-1-text" class="text-gray-600">Your transactions are always safe and secure with our trusted payment methods.</p>
+                </div>
+                <!-- Benefit 2 -->
+                <div class="text-center p-6">
+                    <div class="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <h3 id="benefit-2-title" class="text-xl font-bold mb-2">Premium Quality</h3>
+                    <p id="benefit-2-text" class="text-gray-600">We curate only the finest clothing items to ensure durability and comfort.</p>
+                </div>
+                <!-- Benefit 3 -->
+                <div class="text-center p-6">
+                    <div class="rounded-full bg-primary/10 w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 id="benefit-3-title" class="text-xl font-bold mb-2">Customer Support</h3>
+                    <p id="benefit-3-text" class="text-gray-600">Our dedicated team is always available to assist you with any questions or concerns.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- WhatsApp CTA -->
-    <section class="py-12 md:py-16 bg-indigo-600 text-white">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">Have Questions? Contact Us!</h2>
-            <p class="max-w-2xl mx-auto mb-8 text-indigo-100">Our team is here to help with any questions you might have about our products or your order.</p>
-            <button
-                    x-data
-                    @click="Alpine.store('ui').openWhatsApp('Hello, I would like to learn more about your products.')"
-                    class="inline-flex items-center bg-white text-indigo-600 font-bold px-6 py-3 rounded-lg hover:bg-indigo-50 transition"
-            >
-                <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.391-.025-.54-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.093 3.195 5.073 4.485.709.3 1.26.48 1.694.615.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/>
-                </svg>
-                Chat on WhatsApp
-            </button>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-8">
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">About Us</h3>
-                    <p class="text-gray-400 mb-4">
-                        We provide premium quality meats sourced from trusted farms and delivered fresh to your door.
-                    </p>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Categories</h3>
-                    <ul class="space-y-2" x-data>
-                        <template x-for="category in CATEGORIES.slice(0, 4)" :key="category.id">
-                            <li>
-                                <a
-                                        :href="'products.html?category=' + category.id"
-                                        class="text-gray-400 hover:text-white transition"
-                                        x-text="category.name"
-                                ></a>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Customer Service</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Returns & Refunds</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Connect With Us</h3>
-                    <div class="flex space-x-4 mb-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition">
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                            </svg>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition" x-data
-                           @click.prevent="Alpine.store('ui').openWhatsApp('Hello')">
-                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.391-.025-.54-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.093 3.195 5.073 4.485.709.3 1.26.48 1.694.615.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/>
-                            </svg>
-                        </a>
-                    </div>
-                    <div>
-                        <h4 class="font-medium mb-2">Subscribe to our newsletter</h4>
-                        <form class="flex">
-                            <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l-lg text-gray-900">
-                            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-r-lg transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </button>
-                        </form>
+            <h2 id="testimonials-title" class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">★★★★★</div>
+                    <p id="testimonial-1-text" class="text-gray-700 mb-4">"I absolutely love the quality of clothes from pinkDress. The fabrics are luxurious and the fit is always perfect. Will definitely continue shopping here!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-primary font-medium">SL</span>
+                        </div>
+                        <div>
+                            <h4 id="testimonial-1-name" class="font-medium">Sarah L.</h4>
+                            <p id="testimonial-1-location" class="text-gray-500 text-sm">New York, NY</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <hr class="border-gray-800 my-8">
-
-            <div class="text-center text-gray-500 text-sm">
-                &copy; 2025 pinkshirt.revunova.net | All Rights Reserved
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">★★★★★</div>
+                    <p id="testimonial-2-text" class="text-gray-700 mb-4">"The customer service at pinkDress is exceptional. When I had an issue with my order, they resolved it immediately and even offered a discount on my next purchase!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-primary font-medium">JT</span>
+                        </div>
+                        <div>
+                            <h4 id="testimonial-2-name" class="font-medium">Jessica T.</h4>
+                            <p id="testimonial-2-location" class="text-gray-500 text-sm">Los Angeles, CA</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 mb-4">★★★★★</div>
+                    <p id="testimonial-3-text" class="text-gray-700 mb-4">"I've received so many compliments on my dresses from pinkDress. The designs are unique and the prices are reasonable for the quality. Highly recommend!"</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-3">
+                            <span class="text-primary font-medium">MK</span>
+                        </div>
+                        <div>
+                            <h4 id="testimonial-3-name" class="font-medium">Michelle K.</h4>
+                            <p id="testimonial-3-location" class="text-gray-500 text-sm">Chicago, IL</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Shopping Cart Slide-Over -->
-    <div
-            x-show="cartOpen"
-            class="fixed inset-0 overflow-hidden z-50"
-            x-transition:enter="transition-opacity ease-linear duration-300"
-            x-transition:enter-start="opacity-0"
-            x-transition:enter-end="opacity-100"
-            x-transition:leave="transition-opacity ease-linear duration-300"
-            x-transition:leave-start="opacity-100"
-            x-transition:leave-end="opacity-0"
-    >
-        <div
-                class="absolute inset-0 overflow-hidden"
-                @click.self="cartOpen = false"
-        >
-            <div class="absolute inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-            <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex">
-                <div
-                        class="w-screen max-w-md"
-                        x-transition:enter="transform transition ease-in-out duration-500"
-                        x-transition:enter-start="translate-x-full"
-                        x-transition:enter-end="translate-x-0"
-                        x-transition:leave="transform transition ease-in-out duration-500"
-                        x-transition:leave-start="translate-x-0"
-                        x-transition:leave-end="translate-x-full"
-                >
-                    <div class="h-full flex flex-col bg-white shadow-xl">
-                        <div class="flex-1 py-6 overflow-y-auto px-4 sm:px-6">
-                            <div class="flex items-start justify-between">
-                                <h2 class="text-lg font-medium text-gray-900">Shopping Cart</h2>
-                                <div class="ml-3 h-7 flex items-center">
-                                    <button
-                                            type="button"
-                                            class="-m-2 p-2 text-gray-400 hover:text-gray-500"
-                                            @click="cartOpen = false"
-                                    >
-                                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
+    <!-- Newsletter -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4">
+            <div class="max-w-xl mx-auto text-center">
+                <h2 id="newsletter-title" class="text-3xl font-bold text-white mb-4">Stay Updated</h2>
+                <p id="newsletter-text" class="text-white/80 mb-8">Subscribe to our newsletter for exclusive offers, style tips, and new arrivals.</p>
+                <form class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Your email address" id="newsletter-email" class="flex-grow py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50">
+                    <button type="submit" id="newsletter-submit" class="bg-white text-primary hover:bg-white/90 transition py-3 px-6 rounded-lg font-medium">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-                            <div class="mt-8" x-data="utilities()">
-                                <div class="flow-root">
-                                    <ul role="list" class="-my-6 divide-y divide-gray-200">
-                                        <template x-for="(item, index) in Alpine.store('cart').items" :key="index">
-                                            <li class="py-6 flex">
-                                                <div class="flex-shrink-0 w-24 h-24 border border-gray-200 rounded-md overflow-hidden">
-                                                    <img
-                                                            :src="item.image"
-                                                            :alt="item.name"
-                                                            class="w-full h-full object-center object-cover"
-                                                            onerror="this.src='https://via.placeholder.com/150';"
-                                                    >
-                                                </div>
-
-                                                <div class="ml-4 flex-1 flex flex-col">
-                                                    <div>
-                                                        <div class="flex justify-between text-base font-medium text-gray-900">
-                                                            <h3 x-text="item.name"></h3>
-                                                            <p class="ml-4" x-text="formatPrice(item.price * item.quantity)"></p>
-                                                        </div>
-                                                        <p class="mt-1 text-sm text-gray-500" x-text="formatPrice(item.price) + ' each'"></p>
-                                                    </div>
-
-                                                    <div class="flex-1 flex items-end justify-between text-sm">
-                                                        <div class="flex items-center space-x-3">
-                                                            <button
-                                                                    class="text-gray-500 focus:outline-none"
-                                                                    @click="Alpine.store('cart').updateItemQuantity(index, item.quantity - 1)"
-                                                            >
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                                                </svg>
-                                                            </button>
-                                                            <span class="text-gray-500" x-text="item.quantity"></span>
-                                                            <button
-                                                                    class="text-gray-500 focus:outline-none"
-                                                                    @click="Alpine.store('cart').updateItemQuantity(index, item.quantity + 1)"
-                                                            >
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                                                </svg>
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="flex">
-                                                            <button
-                                                                    type="button"
-                                                                    class="font-medium text-indigo-600 hover:text-indigo-500"
-                                                                    @click="Alpine.store('cart').removeItem(index)"
-                                                            >
-                                                                Remove
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </template>
-
-                                        <template x-if="Alpine.store('cart').items.length === 0">
-                                            <li class="py-6">
-                                                <div class="text-center py-8">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                                                    </svg>
-                                                    <h3 class="mt-2 text-sm font-medium text-gray-900">Your cart is empty</h3>
-                                                    <p class="mt-1 text-sm text-gray-500">Start adding some products to your cart</p>
-                                                    <div class="mt-6">
-                                                        <a href="products.html" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                                            View Products
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </template>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-t border-gray-200 py-6 px-4 sm:px-6">
-                            <div class="flex justify-between text-base font-medium text-gray-900" x-data="utilities()">
-                                <p>Subtotal</p>
-                                <p x-text="formatPrice(Alpine.store('cart').getTotalPrice())"></p>
-                            </div>
-                            <p class="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                            <div class="mt-6">
-                                <a href="cart.html" class="flex justify-center items-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-                                    Checkout
-                                </a>
-                            </div>
-                            <div class="mt-6 flex justify-center text-sm text-center text-gray-500">
-                                <p>
-                                    or
-                                    <button
-                                            type="button"
-                                            class="text-indigo-600 font-medium hover:text-indigo-500"
-                                            @click="cartOpen = false"
-                                    >
-                                        Continue Shopping
-                                        <span aria-hidden="true"> &rarr;</span>
-                                    </button>
-                                </p>
-                            </div>
-
-                            <div class="mt-6 flex justify-center" x-data="whatsappCheckout()">
-                                <button
-                                        type="button"
-                                        class="flex items-center text-white bg-green-500 px-5 py-2 rounded-md hover:bg-green-600 transition"
-                                        @click="sendOrder()"
-                                >
-                                    <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.391-.025-.54-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.18 2.093 3.195 5.073 4.485.709.3 1.26.48 1.694.615.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/>
-                                    </svg>
-                                    Order via WhatsApp
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- About Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="About pinkDress" class="rounded-lg shadow-md">
+                </div>
+                <div>
+                    <h2 id="about-title" class="text-3xl font-bold mb-6">About pinkDress</h2>
+                    <p id="about-text-1" class="text-gray-700 mb-4">Founded in 2023, pinkDress is dedicated to providing high-quality women's fashion that empowers and inspires confidence.</p>
+                    <p id="about-text-2" class="text-gray-700 mb-4">Our mission is to create clothing that combines style, comfort, and durability. We believe that fashion should be accessible to everyone, which is why we offer a wide range of sizes and styles to suit different preferences and body types.</p>
+                    <p id="about-text-3" class="text-gray-700 mb-6">Every piece in our collection is carefully selected and designed with attention to detail, ensuring that you not only look good but feel good too.</p>
+                    <a href="#" id="about-cta" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition">Learn More</a>
                 </div>
             </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white">
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Footer Column 1 -->
+            <div>
+                <h3 id="footer-heading-1" class="text-xl font-bold mb-4">About Us</h3>
+                <p id="footer-about-text" class="text-gray-300">
+                    pinkDress offers high-quality women's fashion designed for the modern woman who values style, comfort, and quality.
+                </p>
+            </div>
+            <!-- Footer Column 2 -->
+            <div>
+                <h3 id="footer-heading-2" class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a href="index.html" id="footer-link-home" class="hover:text-primary transition">Home</a></li>
+                    <li><a href="products.html" id="footer-link-products" class="hover:text-primary transition">Products</a></li>
+                    <li><a href="cart.html" id="footer-link-cart" class="hover:text-primary transition">Cart</a></li>
+                    <li><a href="#" id="footer-link-about" class="hover:text-primary transition">About</a></li>
+                    <li><a href="#" id="footer-link-contact" class="hover:text-primary transition">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Footer Column 3 -->
+            <div>
+                <h3 id="footer-heading-3" class="text-xl font-bold mb-4">Contact Us</h3>
+                <p id="footer-contact-email" class="text-gray-300">Email: info@pinkdress.com</p>
+                <p id="footer-contact-phone" class="text-gray-300">Phone: (555) 123-4567</p>
+                <!-- WhatsApp Contact Button - Uses UI store directly -->
+                <button @click="$store.ui.openWhatsApp('Hello, I would like more information about your store.')" class="flex items-center space-x-2 text-gray-300 hover:text-green-400 mt-2 transition">
+                    <svg class="h-5 w-5">
+                        <use href="#icon-whatsapp"></use>
+                    </svg>
+                    <span>Contact on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="mt-8 pt-4 border-t border-gray-700 text-center text-gray-300">
+            <p id="footer-copyright">&copy; 2025 pinkDress. All rights reserved.</p>
         </div>
     </div>
+</footer>
+
+<!-- Back to top button - Uses UI store directly -->
+<button @click="$store.ui.scrollToTop()" class="fixed bottom-4 left-4 bg-primary text-white p-2 rounded-full shadow-lg">
+    <svg class="h-6 w-6">
+        <use href="#icon-arrow-up"></use>
+    </svg>
+</button>
+
+<!-- WhatsApp button - Uses UI store directly -->
+<button @click="$store.ui.openWhatsApp('Hello, I have a question about your products.')" class="fixed bottom-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
+    <svg class="h-6 w-6">
+        <use href="#icon-whatsapp"></use>
+    </svg>
+</button>
+
+<!-- Cart notification - Uses UI store directly -->
+<div x-show="$store.ui.showCartNotification" x-cloak
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 transform translate-y-2"
+     x-transition:enter-end="opacity-100 transform translate-y-0"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100 transform translate-y-0"
+     x-transition:leave-end="opacity-0 transform translate-y-2"
+     class="fixed bottom-20 right-4 bg-green-500 text-white p-4 rounded shadow-lg">
+    Item added to cart!
 </div>
+
+<!-- JavaScript Files -->
+<script src="js/categories.js"></script>
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>

@@ -1,13 +1,9 @@
 document.addEventListener('alpine:init', () => {
-    /**
-     * Product Catalog Component
-     * Handles product filtering, sorting, and view options
-     */
     Alpine.data('productCatalog', () => {
         return {
-            // State
             searchQuery: '',
             selectedCategory: null,
+            selectedCategorySlug: null,
             view: 'grid',
             sortBy: 'featured',
             priceRanges: [],
@@ -16,15 +12,11 @@ document.addEventListener('alpine:init', () => {
             inStock: false,
             mobileFiltersOpen: false,
 
-            // These will be populated in init()
             productData: [],
             categoryData: [],
 
-            // Initialize from URL parameters and data
             init() {
-                // Wait for next tick to ensure PRODUCTS and CATEGORIES are loaded
                 this.$nextTick(() => {
-                    // Check if PRODUCTS and CATEGORIES are defined
                     if (typeof PRODUCTS !== 'undefined') {
                         this.productData = PRODUCTS;
                     }
@@ -32,16 +24,32 @@ document.addEventListener('alpine:init', () => {
                         this.categoryData = CATEGORIES;
                     }
 
-                    // Get URL parameters
                     const urlParams = new URLSearchParams(window.location.search);
-                    const categoryParam = urlParams.get('category');
-                    const filterParam = urlParams.get('filter');
+                    const categorySlug = urlParams.get('category');
 
-                    if (categoryParam) {
-                        this.selectedCategory = parseInt(categoryParam);
+                    if (categorySlug) {
+                        const category = this.categoryData.find(cat => cat.slug === categorySlug);
+                        if (category) {
+                            this.selectedCategory = category.id;
+                            this.selectedCategorySlug = categorySlug;
+                        }
+                    } else {
+                        const categoryId = urlParams.get('categoryId');
+                        if (categoryId) {
+                            this.selectedCategory = parseInt(categoryId);
+                            const category = this.categoryData.find(cat => cat.id === parseInt(categoryId));
+                            if (category) {
+                                this.selectedCategorySlug = category.slug;
+                                window.history.replaceState(
+                                    {},
+                                    document.title,
+                                    `products.html?category=${category.slug}`
+                                );
+                            }
+                        }
                     }
 
-                    // Apply special filters based on URL parameter
+                    const filterParam = urlParams.get('filter');
                     if (filterParam) {
                         switch (filterParam) {
                             case 'new':
@@ -56,7 +64,6 @@ document.addEventListener('alpine:init', () => {
                         }
                     }
 
-                    // Set view from localStorage if available
                     const savedView = localStorage.getItem('preferredView');
                     if (savedView) {
                         this.view = savedView;
@@ -64,30 +71,39 @@ document.addEventListener('alpine:init', () => {
                 });
             },
 
-            // Helper to get URL parameters
+            selectCategoryBySlug(slug) {
+                this.selectedCategorySlug = slug;
+                const category = this.categoryData.find(cat => cat.slug === slug);
+                this.selectedCategory = category ? category.id : null;
+
+                const url = new URL(window.location);
+                if (slug) {
+                    url.searchParams.set('category', slug);
+                } else {
+                    url.searchParams.delete('category');
+                }
+                window.history.pushState({}, '', url);
+            },
+
             getUrlParameter(name) {
                 const urlParams = new URLSearchParams(window.location.search);
                 return urlParams.get(name);
             },
 
-            // Get category name by ID
             getCategoryName(categoryId) {
                 const category = this.categoryData.find(cat => cat.id === categoryId);
                 return category ? category.name : 'All Products';
             },
 
-            // Save view preference
             saveViewPreference() {
                 localStorage.setItem('preferredView', this.view);
             },
 
-            // Set view with save
             setView(viewType) {
                 this.view = viewType;
                 this.saveViewPreference();
             },
 
-            // Helper: Recursively get all descendant category IDs for a selected category
             getAllDescendantCategoryIds(parentId) {
                 let ids = [];
                 this.categoryData.forEach(cat => {
@@ -99,7 +115,6 @@ document.addEventListener('alpine:init', () => {
                 return ids;
             },
 
-            // Filter and sort products
             getFilteredProducts() {
                 let categoryIdsToCheck = [];
                 if (this.selectedCategory !== null) {
@@ -109,19 +124,15 @@ document.addEventListener('alpine:init', () => {
                     ];
                 }
 
-                // First filter by category and search query
                 let filtered = this.productData.filter(product => {
-                    // Category filter
                     const categoryMatch = this.selectedCategory === null ||
                         (Array.isArray(product.categories) &&
                             product.categories.some(catId => categoryIdsToCheck.includes(catId)));
 
-                    // Search filter
                     const searchMatch = this.searchQuery === '' ||
                         (product.name && product.name.toLowerCase().includes(this.searchQuery.toLowerCase())) ||
                         (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase()));
 
-                    // Price range filter
                     let priceMatch = true;
                     if (this.priceRanges.length > 0) {
                         const price = product.salePrice || product.base_price || product.price;
@@ -134,7 +145,6 @@ document.addEventListener('alpine:init', () => {
                         });
                     }
 
-                    // Status filters
                     const newMatch = !this.showNew || product.isNew;
                     const saleMatch = !this.showSale || product.isOnSale;
                     const stockMatch = !this.inStock || (product.hasVariants ? product.totalVariantStock > 0 : product.stock > 0);
@@ -142,7 +152,6 @@ document.addEventListener('alpine:init', () => {
                     return categoryMatch && searchMatch && priceMatch && newMatch && saleMatch && stockMatch;
                 });
 
-                // Then sort
                 switch (this.sortBy) {
                     case 'price-asc':
                         filtered.sort((a, b) =>
@@ -172,14 +181,18 @@ document.addEventListener('alpine:init', () => {
                 return filtered;
             },
 
-            // Clear all filters
             clearFilters() {
                 this.searchQuery = '';
                 this.selectedCategory = null;
+                this.selectedCategorySlug = null;
                 this.priceRanges = [];
                 this.showNew = false;
                 this.showSale = false;
                 this.inStock = false;
+
+                const url = new URL(window.location);
+                url.searchParams.delete('category');
+                window.history.pushState({}, '', url);
             }
         };
     });

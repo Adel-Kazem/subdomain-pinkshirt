@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pinkDress - Your Shopping Cart</title>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B81',
+                        secondary: '#FFC0CB',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- AlpineJS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Custom CSS -->
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col" x-data>
+<!-- SVG Sprite Definitions -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <!-- WhatsApp Icon -->
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </symbol>
+    <!-- Cart Icon -->
+    <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </symbol>
+    <!-- Menu Icon -->
+    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+    </symbol>
+    <!-- Arrow Up Icon -->
+    <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 15l7-7 7 7" />
+    </symbol>
+    <!-- Close/X Icon -->
+    <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+    </symbol>
+    <!-- Trash Icon -->
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="3 6 5 6 21 6"></polyline>
+        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        <line x1="10" y1="11" x2="10" y2="17"></line>
+        <line x1="14" y1="11" x2="14" y2="17"></line>
+    </symbol>
+    <!-- Tag Icon -->
+    <symbol id="icon-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+    </symbol>
+    <!-- Truck Icon -->
+    <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="3" width="15" height="13"></rect>
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+        <circle cx="5.5" cy="18.5" r="2.5"></circle>
+        <circle cx="18.5" cy="18.5" r="2.5"></circle>
+    </symbol>
+</svg>
+
+<!-- Header -->
+<header class="bg-white shadow">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold">
+                <h1 id="logo-text">
+                    <span id="logo-prefix">pink</span><span id="logo-highlight" class="text-primary">Dress</span>
+                </h1>
+            </a>
+            <!-- Navigation - Desktop -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" id="nav-home" class="text-gray-800 hover:text-primary transition">Home</a>
+                <a href="products.html" id="nav-products" class="text-gray-800 hover:text-primary transition">Products</a>
+                <a href="#" id="nav-about" class="text-gray-800 hover:text-primary transition">About</a>
+                <a href="#" id="nav-contact" class="text-gray-800 hover:text-primary transition">Contact</a>
+            </nav>
+            <!-- Icons -->
+            <div class="flex items-center space-x-4">
+                <!-- Cart icon - Uses UI store directly, no x-data needed -->
+                <a href="cart.html" class="relative">
+                    <svg class="h-6 w-6 text-primary">
+                        <use href="#icon-cart"></use>
+                    </svg>
+                    <span x-show="$store.cart.getTotalItems() > 0"
+                          x-text="$store.cart.getTotalItems()"
+                          class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                        </span>
+                </a>
+                <!-- Mobile menu button - Uses UI store directly -->
+                <button @click="$store.ui.toggleMenu()" class="md:hidden focus:outline-none">
+                    <svg class="h-6 w-6">
+                        <use href="#icon-menu"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Navigation - Uses UI store directly -->
+        <nav x-show="$store.ui.isMenuOpen" x-cloak @click.away="$store.ui.closeMenu()" class="md:hidden py-4">
+            <div class="flex flex-col space-y-3">
+                <a href="index.html" id="nav-mobile-home" class="text-gray-800 hover:text-primary transition">Home</a>
+                <a href="products.html" id="nav-mobile-products" class="text-gray-800 hover:text-primary transition">Products</a>
+                <a href="#" id="nav-mobile-about" class="text-gray-800 hover:text-primary transition">About</a>
+                <a href="#" id="nav-mobile-contact" class="text-gray-800 hover:text-primary transition">Contact</a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="flex-grow container mx-auto px-4 py-8">
+    <!-- Cart Page Title -->
+    <div class="max-w-4xl mx-auto mb-8">
+        <h1 class="text-3xl font-bold">Your Shopping Cart</h1>
+        <p class="text-gray-600 mt-2">Review your items and proceed to checkout when ready.</p>
+    </div>
+
+    <!-- Cart Page Section - CRITICAL: All elements using cartPage variables MUST be within this container -->
+    <div x-data="cartPage()" x-cloak class="max-w-4xl mx-auto">
+        <!-- Empty Cart Display -->
+        <div x-show="$store.cart.items.length === 0" class="bg-white p-12 rounded-lg shadow-sm text-center">
+            <div class="inline-block p-6 bg-gray-100 rounded-full mb-6">
+                <svg class="h-12 w-12 text-gray-400">
+                    <use href="#icon-cart"></use>
+                </svg>
+            </div>
+            <h2 class="text-2xl font-bold mb-4">Your cart is empty</h2>
+            <p class="text-gray-600 mb-8">Looks like you haven't added any items to your cart yet.</p>
+            <a href="products.html" class="inline-block bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-medium transition">
+                Continue Shopping
+            </a>
+        </div>
+
+        <!-- Cart Items List - Only visible when cart has items -->
+        <div x-show="$store.cart.items.length > 0" class="flex flex-col lg:flex-row gap-8">
+            <!-- Cart Items -->
+            <div class="lg:w-2/3">
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                    <!-- Cart Header - Only visible on desktop -->
+                    <div class="hidden md:grid grid-cols-12 gap-4 p-4 border-b border-gray-100 text-sm font-medium text-gray-500">
+                        <div class="col-span-6">Product</div>
+                        <div class="col-span-2 text-center">Price</div>
+                        <div class="col-span-2 text-center">Quantity</div>
+                        <div class="col-span-2 text-right">Total</div>
+                    </div>
+
+                    <!-- Cart Items -->
+                    <div class="divide-y divide-gray-100">
+                        <template x-for="(item, index) in $store.cart.items" :key="index">
+                            <div class="p-4 md:p-6">
+                                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+                                    <!-- Product Image and Name -->
+                                    <div class="md:col-span-6 flex space-x-4">
+                                        <img :src="item.image" :alt="item.name" class="w-16 h-16 md:w-20 md:h-20 object-cover rounded">
+                                        <div>
+                                            <h3 class="font-medium" x-text="item.name"></h3>
+
+                                            <!-- Product Options -->
+                                            <template x-if="Object.keys(item.options).length > 0">
+                                                <div class="mt-1 text-sm text-gray-500 space-y-1">
+                                                    <template x-for="(value, option) in item.options" :key="option">
+                                                        <div>
+                                                            <span x-text="formatOptionName(option)"></span>:
+                                                            <span x-text="value"></span>
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
+
+                                            <!-- Remove Button - Mobile Only -->
+                                            <button @click="$store.cart.removeItem(index)" class="mt-2 md:hidden text-sm text-red-500 hover:text-red-700 flex items-center transition">
+                                                <svg class="h-4 w-4 mr-1">
+                                                    <use href="#icon-trash"></use>
+                                                </svg>
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Price -->
+                                    <div class="md:col-span-2 flex justify-between md:justify-center items-center">
+                                        <span class="md:hidden text-gray-500">Price:</span>
+                                        <span x-text="formatPrice(item.price)"></span>
+                                    </div>
+
+                                    <!-- Quantity -->
+                                    <div class="md:col-span-2 flex justify-between md:justify-center items-center">
+                                        <span class="md:hidden text-gray-500">Quantity:</span>
+                                        <div class="flex items-center border border-gray-300 rounded-md">
+                                            <button @click="$store.cart.updateItemQuantity(index, item.quantity - 1)" class="px-3 py-1 text-gray-500 hover:text-gray-700 focus:outline-none">-</button>
+                                            <span class="px-2 py-1 min-w-[2rem] text-center" x-text="item.quantity"></span>
+                                            <button @click="$store.cart.updateItemQuantity(index, item.quantity + 1)" class="px-3 py-1 text-gray-500 hover:text-gray-700 focus:outline-none">+</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Total and Remove -->
+                                    <div class="md:col-span-2 flex justify-between md:justify-end items-center">
+                                        <span class="md:hidden text-gray-500">Total:</span>
+                                        <div class="flex md:flex-col items-center md:items-end justify-end">
+                                            <span class="font-medium" x-text="formatPrice(item.price * item.quantity)"></span>
+
+                                            <!-- Remove Button - Desktop Only -->
+                                            <button @click="$store.cart.removeItem(index)" class="hidden md:flex mt-2 text-sm text-red-500 hover:text-red-700 items-center transition">
+                                                <svg class="h-4 w-4 mr-1">
+                                                    <use href="#icon-trash"></use>
+                                                </svg>
+                                                Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Cart Actions -->
+                    <div class="p-4 md:p-6 bg-gray-50 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <a href="products.html" class="text-primary hover:text-primary/80 flex items-center transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Continue Shopping
+                        </a>
+
+                        <button @click="$store.cart.clearCart()" class="text-gray-600 hover:text-red-500 flex items-center transition">
+                            <svg class="h-4 w-4 mr-2">
+                                <use href="#icon-trash"></use>
+                            </svg>
+                            Clear Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="lg:w-1/3">
+                <div class="bg-white rounded-lg shadow-sm overflow-hidden sticky top-20">
+                    <div class="p-6 border-b border-gray-100">
+                        <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+
+                        <!-- Subtotal -->
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-medium" x-text="$store.cart.getFormattedTotal()"></span>
+                        </div>
+
+                        <!-- Shipping Method -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-3">Shipping Method</h3>
+                            <div class="space-y-2">
+                                <template x-for="(method, key) in shippingMethods" :key="key">
+                                    <label class="flex items-center p-3 border rounded-lg" :class="shippingMethod === key ? 'border-primary bg-primary/5' : 'border-gray-200'">
+                                        <input type="radio" x-model="shippingMethod" :value="key" :disabled="key === 'free' && !qualifiesForFreeShipping()" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
+                                        <div class="ml-3 flex-grow">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-medium" x-text="method.name"></span>
+                                                <span x-text="method.cost === 0 ? 'Free' : formatPrice(method.cost)"></span>
+                                            </div>
+                                            <p class="text-sm text-gray-500" x-text="method.description"></p>
+
+                                            <!-- Free shipping eligibility message -->
+                                            <template x-if="key === 'free' && !qualifiesForFreeShipping()">
+                                                <p class="text-sm text-primary mt-1">
+                                                    Add <span x-text="formatPrice(100 - $store.cart.getTotalPrice())"></span> more to qualify
+                                                </p>
+                                            </template>
+                                        </div>
+                                    </label>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Code -->
+                        <div class="mb-6">
+                            <h3 class="font-medium mb-3">Coupon Code</h3>
+                            <div class="flex space-x-2">
+                                <input type="text" x-model="couponCode" placeholder="Enter coupon code" class="flex-grow px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary">
+                                <button @click="applyCoupon()" class="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg font-medium transition">
+                                    Apply
+                                </button>
+                            </div>
+
+                            <!-- Coupon applied message -->
+                            <template x-if="appliedCoupon">
+                                <div class="flex items-center mt-2 text-sm text-green-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span x-text="'Coupon ' + appliedCoupon + ' applied'"></span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <!-- Total -->
+                        <div class="border-t border-gray-100 pt-4">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-gray-600">Shipping</span>
+                                <span x-text="formatPrice(getCurrentShippingCost())"></span>
+                            </div>
+
+                            <!-- Discount row (if coupon applied) -->
+                            <template x-if="discountAmount > 0">
+                                <div class="flex justify-between items-center mb-1 text-green-600">
+                                    <span>Discount</span>
+                                    <span x-text="'- ' + formatPrice(discountAmount)"></span>
+                                </div>
+                            </template>
+
+                            <div class="flex justify-between items-center text-lg font-bold mt-2">
+                                <span>Total</span>
+                                <span x-text="formatPrice(getFinalTotal())"></span>
+                            </div>
+
+                            <!-- Estimated delivery -->
+                            <p class="text-sm text-gray-500 mt-3">
+                                <svg class="h-4 w-4 inline-block mr-1">
+                                    <use href="#icon-truck"></use>
+                                </svg>
+                                <span>Estimated Delivery: </span>
+                                <span x-text="estimatedDelivery"></span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- WhatsApp Checkout button -->
+                    <div class="p-6">
+                        <!-- WhatsApp Checkout Using the whatsappCheckout component -->
+                        <button x-data="whatsappCheckout()" @click="sendOrder()" class="w-full bg-green-500 hover:bg-green-600 text-white py-4 px-6 rounded-lg font-bold flex items-center justify-center transition">
+                            <svg class="h-6 w-6 mr-2">
+                                <use href="#icon-whatsapp"></use>
+                            </svg>
+                            Checkout via WhatsApp
+                        </button>
+
+                        <p class="text-center text-sm text-gray-500 mt-4">
+                            By checking out, you agree to our
+                            <a href="#" class="text-primary hover:underline">Terms of Service</a> and
+                            <a href="#" class="text-primary hover:underline">Privacy Policy</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Recently Viewed Products, only shown when cart has items -->
+<section class="bg-white py-16" x-show="$store.cart.items.length > 0">
+    <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-8">Recently Viewed</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                <a href="product.html?slug=floral-summer-dress">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1623609163841-5e69d8c62cc8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Floral Summer Dress" class="w-full h-64 object-cover">
+                        <div class="absolute top-0 right-0 bg-primary text-white m-2 px-2 py-1 text-xs font-medium rounded">New</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium">Floral Summer Dress</h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-primary font-bold">$49.99</p>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="text-xs text-gray-500 ml-1">(42)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="px-4 pb-4">
+                    <button @click="$store.ui.openWhatsApp('I am interested in the Floral Summer Dress.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                        <svg class="h-5 w-5 mr-2">
+                            <use href="#icon-whatsapp"></use>
+                        </svg>
+                        Inquire
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                <a href="product.html?slug=high-waist-jeans">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="High Waist Jeans" class="w-full h-64 object-cover">
+                        <div class="absolute top-0 right-0 bg-red-500 text-white m-2 px-2 py-1 text-xs font-medium rounded">Sale</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium">High Waist Jeans</h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <div>
+                                <span class="text-primary font-bold">$39.99</span>
+                                <span class="text-gray-400 line-through text-sm ml-2">$59.99</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400">★★★★☆</span>
+                                <span class="text-xs text-gray-500 ml-1">(28)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="px-4 pb-4">
+                    <button @click="$store.ui.openWhatsApp('I am interested in the High Waist Jeans.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                        <svg class="h-5 w-5 mr-2">
+                            <use href="#icon-whatsapp"></use>
+                        </svg>
+                        Inquire
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                <a href="product.html?slug=cotton-blouse">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Cotton Blouse" class="w-full h-64 object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium">Cotton Blouse</h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-primary font-bold">$29.99</p>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400">★★★★★</span>
+                                <span class="text-xs text-gray-500 ml-1">(56)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="px-4 pb-4">
+                    <button @click="$store.ui.openWhatsApp('I am interested in the Cotton Blouse.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                        <svg class="h-5 w-5 mr-2">
+                            <use href="#icon-whatsapp"></use>
+                        </svg>
+                        Inquire
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden group">
+                <a href="product.html?slug=maxi-skirt">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Maxi Skirt" class="w-full h-64 object-cover">
+                        <div class="absolute top-0 right-0 bg-purple-500 text-white m-2 px-2 py-1 text-xs font-medium rounded">Best Seller</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-medium">Maxi Skirt</h3>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-primary font-bold">$45.99</p>
+                            <div class="flex items-center">
+                                <span class="text-yellow-400">★★★★☆</span>
+                                <span class="text-xs text-gray-500 ml-1">(37)</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="px-4 pb-4">
+                    <button @click="$store.ui.openWhatsApp('I am interested in the Maxi Skirt.')" class="w-full bg-white border border-green-500 text-green-500 hover:bg-green-500 hover:text-white transition py-2 rounded flex items-center justify-center">
+                        <svg class="h-5 w-5 mr-2">
+                            <use href="#icon-whatsapp"></use>
+                        </svg>
+                        Inquire
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-800 text-white mt-auto">
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Footer Column 1 -->
+            <div>
+                <h3 id="footer-heading-1" class="text-xl font-bold mb-4">About Us</h3>
+                <p id="footer-about-text" class="text-gray-300">
+                    pinkDress offers high-quality women's fashion designed for the modern woman who values style, comfort, and quality.
+                </p>
+            </div>
+            <!-- Footer Column 2 -->
+            <div>
+                <h3 id="footer-heading-2" class="text-xl font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a href="index.html" id="footer-link-home" class="hover:text-primary transition">Home</a></li>
+                    <li><a href="products.html" id="footer-link-products" class="hover:text-primary transition">Products</a></li>
+                    <li><a href="cart.html" id="footer-link-cart" class="hover:text-primary transition">Cart</a></li>
+                    <li><a href="#" id="footer-link-about" class="hover:text-primary transition">About</a></li>
+                    <li><a href="#" id="footer-link-contact" class="hover:text-primary transition">Contact</a></li>
+                </ul>
+            </div>
+            <!-- Footer Column 3 -->
+            <div>
+                <h3 id="footer-heading-3" class="text-xl font-bold mb-4">Contact Us</h3>
+                <p id="footer-contact-email" class="text-gray-300">Email: info@pinkdress.com</p>
+                <p id="footer-contact-phone" class="text-gray-300">Phone: (555) 123-4567</p>
+                <!-- WhatsApp Contact Button - Uses UI store directly -->
+                <button @click="$store.ui.openWhatsApp('Hello, I would like more information about your products.')" class="flex items-center space-x-2 text-gray-300 hover:text-green-400 mt-2 transition">
+                    <svg class="h-5 w-5">
+                        <use href="#icon-whatsapp"></use>
+                    </svg>
+                    <span>Contact on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="mt-8 pt-4 border-t border-gray-700 text-center text-gray-300">
+            <p id="footer-copyright">&copy; 2025 pinkDress. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to top button - Uses UI store directly -->
+<button @click="$store.ui.scrollToTop()" class="fixed bottom-4 left-4 bg-primary text-white p-2 rounded-full shadow-lg">
+    <svg class="h-6 w-6">
+        <use href="#icon-arrow-up"></use>
+    </svg>
+</button>
+
+<!-- WhatsApp button - Uses UI store directly -->
+<button @click="$store.ui.openWhatsApp('Hello, I have a question about your products.')" class="fixed bottom-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
+    <svg class="h-6 w-6">
+        <use href="#icon-whatsapp"></use>
+    </svg>
+</button>
+
+<!-- JavaScript Files -->
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<script src="js/cart-page.js"></script>
+</body>
+</html>
