@@ -296,12 +296,11 @@
 
             <div
                     x-data="{
-                        formatPrice: Alpine.data('utilities').formatPrice,
-                        featuredProducts: typeof PRODUCTS !== 'undefined' ? PRODUCTS.filter(p => p.isFeatured && p.status === 'active').slice(0, 4) : []
-                    }"
+        formatPrice: Alpine.data('utilities').formatPrice
+    }"
                     class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
             >
-                <template x-for="product in featuredProducts" :key="product.id">
+                <template x-for="product in (typeof PRODUCTS !== 'undefined' ? PRODUCTS.filter(p => p.isFeatured && p.status === 'active').slice(0, 4) : [])" :key="product.id">
                     <div class="group">
                         <a :href="'product.html?slug=' + product.slug" class="block">
                             <div class="relative overflow-hidden rounded-xl bg-neutral-100">
