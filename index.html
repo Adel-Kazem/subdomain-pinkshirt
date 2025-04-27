@@ -3,17 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pinkJeans - Stylish Women's Fashion</title>
+    <title>PinkJeans - Premium Quality Products</title>
 
-    <!-- TailwindCSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#ff6b81', // Pink primary color
-                        secondary: '#f8f9fa', // Light secondary color
+                        primary: {
+                            50: '#fdf2f8',
+                            100: '#fce7f3',
+                            200: '#fbcfe8',
+                            300: '#f9a8d4',
+                            400: '#f472b6',
+                            500: '#ec4899',
+                            600: '#db2777',
+                            700: '#be185d',
+                            800: '#9d174d',
+                            900: '#831843',
+                        },
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
@@ -24,223 +46,310 @@
         }
     </script>
 
-    <!-- AlpineJS -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <!-- Custom CSS -->
-    <style>
-        [x-cloak] { display: none !important; }
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
-    </style>
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom JavaScript Files -->
+    <script src="js/categories.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
 </head>
-<body class="bg-white min-h-screen flex flex-col" x-data>
-<!-- SVG Sprite Definitions -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-    <!-- WhatsApp Icon -->
-    <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-    </symbol>
+<body class="font-sans bg-white text-neutral-800 antialiased">
 
-    <!-- Cart Icon -->
-    <symbol id="icon-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </symbol>
+<!-- Main Container -->
+<div x-data="{ mobileMenuOpen: false }">
 
-    <!-- Menu Icon -->
-    <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 6h16M4 12h16M4 18h16" />
-    </symbol>
-
-    <!-- Arrow Up Icon -->
-    <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M5 15l7-7 7 7" />
-    </symbol>
-
-    <!-- Close/X Icon -->
-    <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 6L6 18M6 6l12 12" />
-    </symbol>
-
-    <!-- Heart/Like Icon -->
-    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-    </symbol>
-</svg>
-
-<!-- Header -->
-<header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-4">
-        <div class="flex justify-between items-center">
-            <!-- Logo -->
-            <a href="index.html" class="text-2xl font-bold">
-                <h1 id="logo-text">
-                    <span id="logo-prefix" class="font-serif">pink</span><span id="logo-highlight" class="text-primary font-serif">Jeans</span>
-                </h1>
-            </a>
-
-            <!-- Navigation - Desktop -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="index.html" id="nav-home" class="text-gray-800 hover:text-primary transition font-medium">Home</a>
-                <a href="products.html" id="nav-products" class="text-gray-800 hover:text-primary transition">Shop</a>
-                <a href="#featured" id="nav-featured" class="text-gray-800 hover:text-primary transition">New Arrivals</a>
-                <a href="#about" id="nav-about" class="text-gray-800 hover:text-primary transition">About Us</a>
-            </nav>
-
-            <!-- Icons -->
-            <div class="flex items-center space-x-4">
-                <!-- Cart icon - Uses UI store directly, no x-data needed -->
-                <a href="cart.html" class="relative">
-                    <svg class="h-6 w-6 text-gray-600 hover:text-primary transition">
-                        <use href="#icon-cart"></use>
-                    </svg>
-                    <span
-                            x-show="$store.cart.getTotalItems() > 0"
-                            x-text="$store.cart.getTotalItems()"
-                            class="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-            </span>
-                </a>
-
-                <!-- Mobile menu button - Uses UI store directly -->
-                <button @click="$store.ui.toggleMenu()" class="md:hidden focus:outline-none">
-                    <svg class="h-6 w-6 text-gray-600 hover:text-primary transition">
-                        <use href="#icon-menu"></use>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation - Uses UI store directly -->
-        <nav x-show="$store.ui.isMenuOpen" x-cloak @click.away="$store.ui.closeMenu()" class="md:hidden py-4">
-            <div class="flex flex-col space-y-3">
-                <a href="index.html" id="nav-mobile-home" class="text-gray-800 hover:text-primary transition">Home</a>
-                <a href="products.html" id="nav-mobile-products" class="text-gray-800 hover:text-primary transition">Shop</a>
-                <a href="#featured" id="nav-mobile-featured" class="text-gray-800 hover:text-primary transition">New Arrivals</a>
-                <a href="#about" id="nav-mobile-about" class="text-gray-800 hover:text-primary transition">About Us</a>
-            </div>
-        </nav>
-    </div>
-</header>
-
-<!-- Main Content -->
-<main class="flex-grow">
-    <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-r from-pink-50 to-pink-100 overflow-hidden">
-        <div class="container mx-auto px-4 py-24 md:py-32">
-            <div class="max-w-2xl relative z-10">
-                <h2 id="hero-subtitle" class="text-primary font-medium mb-4 tracking-wider uppercase text-sm">Spring / Summer Collection 2025</h2>
-                <h1 id="hero-title" class="text-4xl md:text-6xl font-serif font-normal mb-6 text-gray-800 leading-tight">Confidence is your <br><span class="text-primary">best outfit</span></h1>
-                <p id="hero-text" class="text-gray-600 text-lg mb-8 max-w-lg">
-                    Discover our curated collection of premium women's fashion designed to make you feel confident and beautiful every day.
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="products.html" id="hero-cta" class="bg-primary hover:bg-pink-700 text-white font-medium py-3 px-8 rounded-full transition shadow-md hover:shadow-lg">
-                        Shop Now
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="flex items-center">
+                        <span class="text-2xl font-serif font-bold text-primary-600">PinkJeans</span>
                     </a>
-                    <button id="hero-contact" @click="$store.ui.openWhatsApp('Hi, I would like to know more about your new collection')" class="border border-primary text-primary hover:bg-primary hover:text-white font-medium py-3 px-8 rounded-full transition">
-                        Contact Us
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-10">
+                    <a href="index.html" class="text-neutral-900 border-b-2 border-primary-600 px-1 py-2 text-sm font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-neutral-600 hover:text-primary-600 px-1 py-2 text-sm font-medium transition-colors">Shop</a>
+                    <a href="#about" class="text-neutral-600 hover:text-primary-600 px-1 py-2 text-sm font-medium transition-colors">About</a>
+                    <a href="#contact" class="text-neutral-600 hover:text-primary-600 px-1 py-2 text-sm font-medium transition-colors">Contact</a>
+                </nav>
+
+                <!-- Mobile menu button and Cart Icon -->
+                <div class="flex items-center space-x-4">
+                    <!-- Cart Icon with Counter -->
+                    <a href="cart.html" class="relative p-1 rounded-full text-neutral-600 hover:text-primary-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <!-- Cart Counter -->
+                        <span
+                                x-data
+                                x-show="$store.cart.getTotalItems() > 0"
+                                x-text="$store.cart.getTotalItems()"
+                                class="absolute -top-2 -right-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-primary-600 rounded-full"
+                        ></span>
+                    </a>
+
+                    <!-- Mobile menu button -->
+                    <button
+                            type="button"
+                            @click="mobileMenuOpen = !mobileMenuOpen"
+                            class="md:hidden p-1 rounded-full text-neutral-600 hover:text-primary-600 focus:outline-none"
+                    >
+                        <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="display: none;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
                     </button>
                 </div>
             </div>
         </div>
-        <div class="absolute right-0 top-0 h-full w-full md:w-1/2 bg-cover bg-right" style="background-image: url('https://images.unsplash.com/photo-1581044777550-4cfa60707c03?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');">
-            <div class="absolute inset-0 bg-gradient-to-r from-pink-50 to-transparent"></div>
+
+        <!-- Mobile Menu -->
+        <div
+                x-show="mobileMenuOpen"
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 transform -translate-y-2"
+                x-transition:enter-end="opacity-100 transform translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 transform translate-y-0"
+                x-transition:leave-end="opacity-0 transform -translate-y-2"
+                class="md:hidden bg-white border-t border-neutral-200"
+                style="display: none;"
+        >
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-base font-medium text-primary-600 bg-primary-50 rounded-md">Home</a>
+                <a href="products.html" class="block px-3 py-2 text-base font-medium text-neutral-900 hover:bg-primary-50 hover:text-primary-600 rounded-md">Shop</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-neutral-900 hover:bg-primary-50 hover:text-primary-600 rounded-md">About</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-neutral-900 hover:bg-primary-50 hover:text-primary-600 rounded-md">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Notification -->
+    <div
+            x-data
+            x-show="$store.ui.cartNotificationVisible"
+            x-transition:enter="transition ease-out duration-300"
+            x-transition:enter-start="opacity-0 transform translate-y-2"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform translate-y-2"
+            class="fixed bottom-4 right-4 bg-primary-600 text-white px-6 py-3 rounded-lg shadow-lg z-50"
+            style="display: none;"
+    >
+        Item added to cart!
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-50 to-primary-100 -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32 lg:py-40">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="inline-block text-sm font-medium tracking-wider text-primary-700 mb-3">PREMIUM QUALITY PRODUCTS</span>
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-900 leading-tight mb-6">
+                        Discover Your Perfect Style
+                    </h1>
+                    <p class="text-lg md:text-xl text-neutral-600 mb-8 max-w-2xl">
+                        Explore our curated collection of high-quality products designed to enhance your lifestyle with elegance and functionality.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="products.html" class="inline-block bg-primary-600 hover:bg-primary-700 text-white font-medium px-8 py-3 rounded-full transition-colors">
+                            Shop Collection
+                        </a>
+                        <a href="#featured" class="inline-block bg-white hover:bg-neutral-100 text-neutral-900 font-medium px-8 py-3 rounded-full border border-neutral-300 transition-colors">
+                            Explore Featured
+                        </a>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="absolute inset-0 -left-6 -top-6 border-2 border-primary-300 rounded-xl -z-10"></div>
+                        <img
+                                src="https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                                alt="Featured collection"
+                                class="w-full h-auto object-cover object-center rounded-xl shadow-xl"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+    </section>
+
+    <!-- Featured Benefits -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="flex flex-col items-center text-center p-6 rounded-xl transition-all hover:shadow-lg">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary-100 text-primary-600 rounded-full mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-2">Premium Quality</h3>
+                    <p class="text-neutral-600">Carefully selected products that meet our high standards for quality and durability.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-6 rounded-xl transition-all hover:shadow-lg">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary-100 text-primary-600 rounded-full mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-2">Fast Delivery</h3>
+                    <p class="text-neutral-600">Get your products delivered to your doorstep quickly and safely.</p>
+                </div>
+
+                <div class="flex flex-col items-center text-center p-6 rounded-xl transition-all hover:shadow-lg">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary-100 text-primary-600 rounded-full mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-neutral-900 mb-2">Secure Payment</h3>
+                    <p class="text-neutral-600">Your payment information is always protected with our secure checkout.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Categories -->
-    <section id="categories" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 id="categories-title" class="text-3xl font-serif font-normal mb-4">Shop by Category</h2>
-                <p id="categories-subtitle" class="text-gray-600 max-w-xl mx-auto">
-                    Explore our curated collections of premium women's fashion for every occasion
-                </p>
+    <!-- Categories Section -->
+    <section class="py-20 bg-neutral-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block text-sm font-medium tracking-wider text-primary-700 mb-2">DISCOVER</span>
+                <h2 class="text-3xl font-serif font-bold text-neutral-900 mb-4">Shop by Category</h2>
+                <p class="text-neutral-600 max-w-2xl mx-auto">Discover our wide range of products categorized for your convenience.</p>
             </div>
 
-            <!-- Categories Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <template x-for="category in CATEGORIES.filter(c => c.featured)" :key="category.id">
-                    <a :href="'products.html?category=' + category.id" class="group">
-                        <div class="relative rounded-lg overflow-hidden shadow-md">
-                            <div class="aspect-w-1 aspect-h-1 bg-gray-100">
-                                <img :src="category.imageUrl" :alt="category.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div
+                    x-data="{
+                        categories: typeof CATEGORIES !== 'undefined' ? CATEGORIES.filter(cat => cat.parent_id === null && cat.active) : []
+                    }"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+                <template x-for="category in categories.slice(0, 6)" :key="category.id">
+                    <a :href="'products.html?category=' + category.slug" class="group block">
+                        <div class="relative overflow-hidden rounded-xl">
+                            <div class="aspect-w-1 aspect-h-1">
+                                <img
+                                        :src="category.imageUrl || 'https://via.placeholder.com/600x600?text=Category'"
+                                        :alt="category.name"
+                                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                >
                             </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent opacity-70"></div>
-                            <div class="absolute bottom-0 left-0 p-6">
-                                <h3 class="text-white text-xl font-medium" x-text="category.name"></h3>
-                                <p class="text-white text-sm mt-2 opacity-80" x-text="category.description"></p>
+                            <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-neutral-900/30 to-transparent flex items-end p-8">
+                                <div class="relative z-10">
+                                    <h3 class="text-2xl font-serif font-bold text-white mb-2" x-text="category.name"></h3>
+                                    <p class="text-neutral-200 text-sm mb-4 line-clamp-2" x-text="category.description"></p>
+                                    <span class="inline-flex items-center text-sm text-white font-medium transition-transform transform translate-x-0 group-hover:translate-x-2">
+                                            Explore Products
+                                            <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                            </svg>
+                                        </span>
+                                </div>
                             </div>
                         </div>
                     </a>
                 </template>
             </div>
 
-            <div class="text-center mt-10">
-                <a href="products.html" id="categories-view-all" class="inline-block border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-6 rounded-full transition">
+            <div class="text-center mt-12">
+                <a href="products.html" class="inline-block border border-neutral-900 hover:bg-neutral-900 hover:text-white text-neutral-900 font-medium px-8 py-3 rounded-full transition-colors">
                     View All Categories
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Featured Products -->
-    <section id="featured" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 id="featured-title" class="text-3xl font-serif font-normal mb-4">New Arrivals</h2>
-                <p id="featured-subtitle" class="text-gray-600 max-w-xl mx-auto">
-                    Our latest styles just landed - be the first to wear what's next in fashion
-                </p>
+    <!-- Featured Products Section -->
+    <section id="featured" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-12">
+                <div>
+                    <span class="inline-block text-sm font-medium tracking-wider text-primary-700 mb-2">FEATURED</span>
+                    <h2 class="text-3xl font-serif font-bold text-neutral-900">Popular Products</h2>
+                </div>
+                <a href="products.html" class="mt-4 md:mt-0 text-primary-600 hover:text-primary-800 font-medium flex items-center transition-colors">
+                    View All Products
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </a>
             </div>
 
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <template x-for="product in PRODUCTS.filter(p => p.isFeatured).slice(0, 4)" :key="product.id">
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden group">
-                        <!-- Product Image -->
-                        <div class="relative overflow-hidden">
-                            <a :href="'product.html?id=' + product.id">
-                                <img :src="product.images[0]" :alt="product.name" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                            </a>
-                            <!-- Quick Add -->
-                            <div class="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-3 px-4 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-full group-hover:translate-y-0 duration-300">
-                                <button @click="$store.ui.openWhatsApp('I am interested in: ' + product.name)" class="text-pink-600 flex items-center">
-                                    <svg class="h-5 w-5 mr-1">
-                                        <use href="#icon-whatsapp"></use>
-                                    </svg>
-                                    Inquire
-                                </button>
-                                <a :href="'product.html?id=' + product.id" class="text-gray-800 hover:text-primary transition">
-                                    View Details
-                                </a>
-                            </div>
-                            <!-- Sale Tag -->
-                            <div x-show="product.isOnSale" class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1">
-                                SALE
-                            </div>
-                        </div>
-
-                        <!-- Product Info -->
-                        <div class="p-4">
-                            <a :href="'product.html?id=' + product.id" class="block">
-                                <h3 class="text-lg font-medium text-gray-800 hover:text-primary transition mb-1" x-text="product.name"></h3>
-                            </a>
-                            <div class="flex items-center mb-2">
-                                <div class="flex text-yellow-400">
-                                    <template x-for="i in Math.floor(product.rating)" :key="i">
-                                        <svg class="w-4 h-4 fill-current">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                        </svg>
-                                    </template>
-                                    <span class="ml-1 text-sm text-gray-500" x-text="'(' + product.reviews_count + ')'"></span>
+            <div
+                    x-data="{
+                        formatPrice: Alpine.data('utilities').formatPrice,
+                        featuredProducts: typeof PRODUCTS !== 'undefined' ? PRODUCTS.filter(p => p.isFeatured && p.status === 'active').slice(0, 4) : []
+                    }"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
+                <template x-for="product in featuredProducts" :key="product.id">
+                    <div class="group">
+                        <a :href="'product.html?slug=' + product.slug" class="block">
+                            <div class="relative overflow-hidden rounded-xl bg-neutral-100">
+                                <div class="aspect-w-1 aspect-h-1">
+                                    <img
+                                            :src="product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/600x600?text=Product'"
+                                            :alt="product.name"
+                                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                    >
+                                </div>
+                                <div x-show="product.isOnSale" class="absolute top-3 left-3 bg-primary-600 text-white text-xs font-bold uppercase px-3 py-1.5 rounded-full">
+                                    Sale
+                                </div>
+                                <div x-show="product.isNew" class="absolute top-3 right-3 bg-neutral-900 text-white text-xs font-bold uppercase px-3 py-1.5 rounded-full">
+                                    New
                                 </div>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <p class="text-primary font-medium" x-text="'$' + product.base_price.toFixed(2)"></p>
-                                <button @click="$store.cart.addItem(product, 1, {})" class="text-gray-600 hover:text-primary transition">
-                                    <svg class="h-6 w-6">
-                                        <use href="#icon-cart"></use>
+                        </a>
+                        <div class="mt-4 px-1">
+                            <div class="flex items-center space-x-1 mb-2">
+                                <template x-for="i in 5">
+                                    <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            :class="i <= (product.rating || 0) ? 'text-yellow-400' : 'text-neutral-200'"
+                                            class="h-4 w-4"
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                    >
+                                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                </template>
+                            </div>
+                            <h3 class="text-lg font-medium text-neutral-900 mb-1 line-clamp-1" x-text="product.name"></h3>
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <span class="text-primary-600 font-bold" x-text="formatPrice(product.salePrice || product.base_price || product.price)"></span>
+                                    <span
+                                            x-show="product.isOnSale && product.base_price"
+                                            x-text="formatPrice(product.base_price)"
+                                            class="ml-2 text-neutral-500 text-sm line-through"
+                                    ></span>
+                                </div>
+                                <button
+                                        @click="$store.cart.addItem(product, 1, {}); $event.preventDefault();"
+                                        class="text-neutral-600 hover:text-primary-600 transition-colors"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                                     </svg>
                                 </button>
                             </div>
@@ -248,138 +357,99 @@
                     </div>
                 </template>
             </div>
-
-            <div class="text-center mt-10">
-                <a href="products.html" id="featured-view-all" class="inline-block bg-primary hover:bg-pink-700 text-white font-medium py-2 px-6 rounded-full transition shadow-md hover:shadow-lg">
-                    View All Products
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="benefits" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 id="benefits-title" class="text-3xl font-serif font-normal mb-4">Why Choose Us</h2>
-                <p id="benefits-subtitle" class="text-gray-600 max-w-xl mx-auto">
-                    We're committed to providing the best experience for our customers
-                </p>
+    <!-- Testimonial Section -->
+    <section class="py-20 bg-primary-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block text-sm font-medium tracking-wider text-primary-700 mb-2">TESTIMONIALS</span>
+                <h2 class="text-3xl font-serif font-bold text-neutral-900 mb-4">What Our Customers Say</h2>
+                <p class="text-neutral-600 max-w-2xl mx-auto">Discover why our customers love shopping with us.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Benefit 1 -->
-                <div id="benefit-1" class="text-center p-6">
-                    <div class="bg-pink-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center space-x-1 mb-4 text-yellow-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                     </div>
-                    <h3 class="text-xl font-medium mb-2">Premium Quality</h3>
-                    <p class="text-gray-600">
-                        Crafted from the finest materials for comfort and durability that lasts
-                    </p>
-                </div>
-
-                <!-- Benefit 2 -->
-                <div id="benefit-2" class="text-center p-6">
-                    <div class="bg-pink-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8 4-8-4V5l8 4 8-4v2zM4 13.8V17l8 4 8-4v-3.2"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium mb-2">Fast Shipping</h3>
-                    <p class="text-gray-600">
-                        Quick delivery to your doorstep with tracking available on all orders
-                    </p>
-                </div>
-
-                <!-- Benefit 3 -->
-                <div id="benefit-3" class="text-center p-6">
-                    <div class="bg-pink-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-medium mb-2">Easy Returns</h3>
-                    <p class="text-gray-600">
-                        Simple 30-day return policy with free exchanges for peace of mind
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 id="testimonials-title" class="text-3xl font-serif font-normal mb-4">What Our Customers Say</h2>
-                <p id="testimonials-subtitle" class="text-gray-600 max-w-xl mx-auto">
-                    Don't just take our word for it - hear from our satisfied customers
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div id="testimonial-1" class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex text-yellow-400 mb-4">
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                    </div>
-                    <p class="text-gray-600 mb-4">
-                        "I absolutely love the quality of their jeans. They fit perfectly and the material is so comfortable. Will definitely be ordering more!"
-                    </p>
+                    <p class="text-neutral-600 italic mb-6">"I absolutely love the quality of their products. The attention to detail is incredible, and the shipping was faster than expected. Will definitely be a repeat customer!"</p>
                     <div class="flex items-center">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Customer" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Sarah Johnson</h4>
-                            <p class="text-gray-500 text-sm">Loyal Customer</p>
+                        <div class="h-10 w-10 rounded-full bg-neutral-200 flex-shrink-0"></div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-neutral-900">Sarah Johnson</p>
+                            <p class="text-sm text-neutral-500">Loyal Customer</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div id="testimonial-2" class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex text-yellow-400 mb-4">
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center space-x-1 mb-4 text-yellow-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        "The customer service is amazing. I had a question about sizing and they helped me pick the perfect fit. The shirts I ordered are now my favorites!"
-                    </p>
+                    <p class="text-neutral-600 italic mb-6">"The customer service is outstanding. When I had an issue with my order, the team resolved it immediately. The products are stylish and well-made. Highly recommend shopping here!"</p>
                     <div class="flex items-center">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Customer" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Emily Wilson</h4>
-                            <p class="text-gray-500 text-sm">Fashion Enthusiast</p>
+                        <div class="h-10 w-10 rounded-full bg-neutral-200 flex-shrink-0"></div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-neutral-900">Michael Patel</p>
+                            <p class="text-sm text-neutral-500">New Customer</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Testimonial 3 -->
-                <div id="testimonial-3" class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="flex text-yellow-400 mb-4">
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                        <svg class="w-5 h-5 fill-current text-gray-300"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                <div class="bg-white p-8 rounded-xl shadow-sm">
+                    <div class="flex items-center space-x-1 mb-4 text-yellow-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
                     </div>
-                    <p class="text-gray-600 mb-4">
-                        "Fast shipping and the clothes exceeded my expectations. The dresses are beautiful and the fabrics feel luxurious. Will be shopping here again!"
-                    </p>
+                    <p class="text-neutral-600 italic mb-6">"I've been shopping here for years and have never been disappointed. The selection is always fresh and trendy, and the prices are reasonable for the quality you get."</p>
                     <div class="flex items-center">
-                        <img src="https://images.unsplash.com/photo-1509967419530-da38b4704bc6?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Customer" class="w-10 h-10 rounded-full mr-3">
-                        <div>
-                            <h4 class="font-medium">Madison Brown</h4>
-                            <p class="text-gray-500 text-sm">First-time Buyer</p>
+                        <div class="h-10 w-10 rounded-full bg-neutral-200 flex-shrink-0"></div>
+                        <div class="ml-3">
+                            <p class="text-sm font-medium text-neutral-900">Emily Rodriguez</p>
+                            <p class="text-sm text-neutral-500">Regular Customer</p>
                         </div>
                     </div>
                 </div>
@@ -388,195 +458,197 @@
     </section>
 
     <!-- Newsletter Section -->
-    <section id="newsletter" class="py-16 bg-primary bg-opacity-10">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto text-center">
-                <h2 id="newsletter-title" class="text-3xl font-serif font-normal mb-4">Join Our Community</h2>
-                <p id="newsletter-subtitle" class="text-gray-600 mb-8">
-                    Subscribe to our newsletter for exclusive offers, style tips, and first access to new arrivals
-                </p>
+    <section class="py-16 bg-primary-600 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <span class="inline-block text-sm font-medium tracking-wider text-primary-200 mb-2">STAY CONNECTED</span>
+                <h2 class="text-3xl font-serif font-bold mb-6">Join Our Newsletter</h2>
+                <p class="text-primary-100 mb-8">Stay updated with our latest products, special offers, and style inspiration.</p>
 
-                <form class="flex flex-col sm:flex-row gap-3 justify-center">
+                <form action="#" method="POST" class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
                     <input
                             type="email"
-                            id="newsletter-email"
-                            placeholder="Your email address"
-                            class="px-4 py-3 rounded-full flex-grow max-w-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="Enter your email"
+                            class="flex-1 px-4 py-3 rounded-full text-neutral-900 focus:outline-none focus:ring-2 focus:ring-white"
+                            required
                     >
                     <button
                             type="submit"
-                            id="newsletter-submit"
-                            class="bg-primary hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-full transition shadow-md hover:shadow-lg"
+                            class="bg-white hover:bg-neutral-100 text-primary-600 font-medium px-6 py-3 rounded-full transition-colors"
                     >
                         Subscribe
                     </button>
                 </form>
 
-                <p class="text-sm text-gray-500 mt-4">
-                    We respect your privacy and will never share your information
-                </p>
+                <p class="mt-4 text-xs text-primary-200">By subscribing, you agree to our Privacy Policy and consent to receive updates from our company.</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="order-2 lg:order-1">
-                    <h2 id="about-title" class="text-3xl font-serif font-normal mb-6">About pinkJeans</h2>
-                    <div id="about-text" class="prose prose-pink max-w-none">
-                        <p>
-                            Founded in 2020, pinkJeans is a premium women's fashion brand dedicated to creating stylish, comfortable clothing that empowers women to look and feel their best.
-                        </p>
-                        <p>
-                            Our mission is to provide high-quality, fashionable pieces that are designed to last. We believe that every woman deserves to feel confident in what she wears, which is why we focus on flattering fits, premium fabrics, and timeless designs with modern touches.
-                        </p>
-                        <p>
-                            We're passionate about sustainable fashion and ethical manufacturing. All our products are made in facilities that ensure fair working conditions, and we're continuously working to reduce our environmental impact.
-                        </p>
-                        <div class="mt-8">
-                            <a href="#" id="about-more" class="inline-block bg-primary hover:bg-pink-700 text-white font-medium py-2 px-6 rounded-full transition shadow-md hover:shadow-lg">
-                                Learn More
-                            </a>
-                            <button
-                                    id="about-contact"
-                                    @click="$store.ui.openWhatsApp('Hi, I would like to know more about your company')"
-                                    class="inline-block ml-4 border border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-6 rounded-full transition"
-                            >
-                                Contact Us
-                            </button>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <span class="inline-block text-sm font-medium tracking-wider text-primary-700 mb-2">CONTACT US</span>
+                    <h2 class="text-3xl font-serif font-bold text-neutral-900 mb-6">Get in Touch</h2>
+                    <p class="text-neutral-600 mb-8">
+                        Have questions about our products or services? Reach out to our customer support team.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-neutral-900 mb-1">Phone</h3>
+                                <p class="text-neutral-600" x-data x-text="$store.ui.whatsAppNumber"></p>
+                            </div>
                         </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-neutral-900 mb-1">Email</h3>
+                                <p class="text-neutral-600">contact@pinkjeans.com</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 h-10 w-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-lg font-medium text-neutral-900 mb-1">Address</h3>
+                                <p class="text-neutral-600">123 Fashion Street, Style City, SC 12345</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <button
+                                x-data
+                                @click="$store.ui.openWhatsApp('Hello, I would like to know more about your products.')"
+                                class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-medium px-6 py-3 rounded-full transition-colors"
+                        >
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                            </svg>
+                            Contact via WhatsApp
+                        </button>
                     </div>
                 </div>
 
-                <div class="order-1 lg:order-2 relative">
-                    <img
-                            id="about-image"
-                            src="https://images.unsplash.com/photo-1573879541250-58ae8b322b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
-                            alt="About Us"
-                            class="w-full h-auto rounded-lg shadow-lg z-10 relative"
-                    >
-                    <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-primary rounded-lg"></div>
+                <div>
+                    <form action="#" method="POST" class="bg-neutral-50 p-8 rounded-xl shadow-sm">
+                        <h3 class="text-2xl font-serif font-bold text-neutral-900 mb-6">Send Us a Message</h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-neutral-700 mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-full border border-neutral-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 focus:ring-opacity-50 transition-colors">
+                            </div>
+
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-neutral-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-full border border-neutral-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 focus:ring-opacity-50 transition-colors">
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-neutral-700 mb-1">Message</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 rounded-xl border border-neutral-300 shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200 focus:ring-opacity-50 transition-colors"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-3 rounded-full transition-colors">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-</main>
 
-<!-- Footer -->
-<footer class="bg-gray-900 text-white">
-    <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- Footer Column 1 -->
-            <div>
-                <h3 id="footer-heading-1" class="text-xl font-serif mb-4">pinkJeans</h3>
-                <p id="footer-about-text" class="text-gray-400">
-                    Premium women's fashion designed for comfort, style, and confidence.
-                </p>
-                <div class="flex space-x-4 mt-6">
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
-                        <span class="sr-only">Facebook</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
-                        <span class="sr-only">Instagram</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition">
-                        <span class="sr-only">Twitter</span>
-                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
-                        </svg>
-                    </a>
+    <!-- Footer -->
+    <footer class="bg-neutral-900 text-neutral-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="col-span-1 md:col-span-2">
+                    <a href="index.html" class="text-2xl font-serif font-bold text-white mb-6 block">PinkJeans</a>
+                    <p class="mb-6 text-neutral-300 max-w-md">
+                        Premium quality products for your everyday needs. We're committed to providing you with the best shopping experience.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-neutral-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Shop</h3>
+                    <ul class="space-y-3">
+                        <li><a href="products.html" class="hover:text-white transition-colors">All Products</a></li>
+                        <li><a href="products.html?filter=new" class="hover:text-white transition-colors">New Arrivals</a></li>
+                        <li><a href="products.html?filter=featured" class="hover:text-white transition-colors">Featured</a></li>
+                        <li><a href="products.html?filter=sale" class="hover:text-white transition-colors">Sale</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns & Exchanges</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <!-- Footer Column 2 -->
-            <div>
-                <h3 id="footer-heading-2" class="text-xl font-serif mb-4">Shop</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="products.html" id="footer-link-all" class="hover:text-primary transition">All Products</a></li>
-                    <li><a href="products.html?featured=true" id="footer-link-new" class="hover:text-primary transition">New Arrivals</a></li>
-                    <li><a href="products.html?sale=true" id="footer-link-sale" class="hover:text-primary transition">Sale Items</a></li>
-                    <li><a href="products.html?category=tops" id="footer-link-tops" class="hover:text-primary transition">Tops</a></li>
-                    <li><a href="products.html?category=jeans" id="footer-link-jeans" class="hover:text-primary transition">Jeans</a></li>
-                </ul>
-            </div>
-
-            <!-- Footer Column 3 -->
-            <div>
-                <h3 id="footer-heading-3" class="text-xl font-serif mb-4">Information</h3>
-                <ul class="space-y-2 text-gray-400">
-                    <li><a href="#about" id="footer-link-about" class="hover:text-primary transition">About Us</a></li>
-                    <li><a href="#" id="footer-link-shipping" class="hover:text-primary transition">Shipping Policy</a></li>
-                    <li><a href="#" id="footer-link-returns" class="hover:text-primary transition">Returns & Exchanges</a></li>
-                    <li><a href="#" id="footer-link-privacy" class="hover:text-primary transition">Privacy Policy</a></li>
-                    <li><a href="#" id="footer-link-terms" class="hover:text-primary transition">Terms & Conditions</a></li>
-                </ul>
-            </div>
-
-            <!-- Footer Column 4 -->
-            <div>
-                <h3 id="footer-heading-4" class="text-xl font-serif mb-4">Contact Us</h3>
-                <p id="footer-contact-email" class="text-gray-400 mb-2">Email: hello@pinkjeans.com</p>
-                <p id="footer-contact-phone" class="text-gray-400 mb-4">Phone: (555) 123-4567</p>
-                <!-- WhatsApp Contact Button - Uses UI store directly -->
-                <button
-                        @click="$store.ui.openWhatsApp('Hello, I would like more information about your products.')"
-                        class="flex items-center space-x-2 text-gray-400 hover:text-primary transition"
-                >
-                    <svg class="h-5 w-5">
-                        <use href="#icon-whatsapp"></use>
-                    </svg>
-                    <span>Chat with Us on WhatsApp</span>
-                </button>
+            <div class="border-t border-neutral-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm">&copy; 2025 PinkJeans. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-sm hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="text-sm hover:text-white transition-colors">Cookie Policy</a>
+                </div>
             </div>
         </div>
+    </footer>
 
-        <!-- Copyright -->
-        <div class="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
-            <p id="footer-copyright">© 2025 pinkJeans. All rights reserved. | Website designed with ♥ by RN Team</p>
-        </div>
-    </div>
-</footer>
-
-<!-- Back to top button - Uses UI store directly -->
-<button @click="$store.ui.scrollToTop()" class="fixed bottom-4 left-4 bg-primary text-white p-3 rounded-full shadow-lg z-40 hover:bg-pink-700 transition">
-    <svg class="h-5 w-5">
-        <use href="#icon-arrow-up"></use>
-    </svg>
-</button>
-
-<!-- WhatsApp button - Uses UI store directly -->
-<button @click="$store.ui.openWhatsApp('Hello, I have a question about your products.')" class="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg z-40 transition">
-    <svg class="h-5 w-5">
-        <use href="#icon-whatsapp"></use>
-    </svg>
-</button>
-
-<!-- Cart notification - Uses UI store directly -->
-<div
-        x-show="$store.ui.showCartNotification"
-        x-cloak
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0 transform translate-y-2"
-        x-transition:enter-end="opacity-100 transform translate-y-0"
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 transform translate-y-0"
-        x-transition:leave-end="opacity-0 transform translate-y-2"
-        class="fixed bottom-20 right-4 bg-green-500 text-white p-4 rounded shadow-lg z-50"
->
-    Item added to cart!
+    <!-- Back to top button -->
+    <button
+            x-data
+            @click="$store.ui.scrollToTop()"
+            class="fixed bottom-6 right-6 bg-primary-600 hover:bg-primary-700 text-white p-3 rounded-full shadow-lg transition-colors"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 </div>
-
-<!-- JavaScript Files -->
-<script src="js/categories.js"></script>
-<script src="js/products.js"></script>
-<script src="js/app.js"></script>
 </body>
 </html>
