@@ -609,7 +609,7 @@
                                         <img
                                                 :src="product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/600x600?text=Product'"
                                                 :alt="product.name"
-                                                class="w-full h-full object-contain transform transition-transform duration-500 group-hover:scale-105"
+                                                class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-105"
                                         >
                                         <div x-show="product.isOnSale" class="absolute top-3 left-3 bg-primary-600 text-white text-xs font-bold uppercase px-2 py-1 rounded">
                                             Sale
@@ -707,7 +707,7 @@
                                         <img
                                                 :src="product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/600x600?text=Product'"
                                                 :alt="product.name"
-                                                class="w-full h-full object-contain"
+                                                class="w-full h-full object-cover"
                                         >
                                         <div x-show="product.isOnSale" class="absolute top-3 left-3 bg-primary-600 text-white text-xs font-bold uppercase px-2 py-1 rounded">
                                             Sale

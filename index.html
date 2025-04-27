@@ -250,7 +250,7 @@
                                 <img
                                         :src="category.imageUrl || 'https://via.placeholder.com/600x600?text=Category'"
                                         :alt="category.name"
-                                        class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                        class="aspect-w-1 aspect-h-1 bg-white"
                                 >
                             </div>
                             <div class="absolute inset-0 bg-gradient-to-t from-neutral-900/70 via-neutral-900/30 to-transparent flex items-end p-8">
@@ -309,7 +309,7 @@
                                     <img
                                             :src="product.images && product.images.length > 0 ? product.images[0] : 'https://via.placeholder.com/600x600?text=Product'"
                                             :alt="product.name"
-                                            class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                                            class="aspect-w-1 aspect-h-1 bg-white"
                                     >
                                 </div>
                                 <div x-show="product.isOnSale" class="absolute top-3 left-3 bg-primary-600 text-white text-xs font-bold uppercase px-3 py-1.5 rounded-full">
