@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOOM | Colorful Living</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Fredoka:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink: #FF5C8D;
+            --yellow: #FFDE59;
+            --teal: #00C2A8;
+            --purple: #B983FF;
+            --blue: #55C1FF;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #FCFCFC;
+        }
+
+        .title-font {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .blob-shape {
+            border-radius: 71% 29% 41% 59% / 59% 51% 49% 41%;
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .product-card img {
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .color-dot {
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+        }
+
+        .wavy-underline {
+            position: relative;
+        }
+
+        .wavy-underline:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 6px;
+            bottom: -6px;
+            left: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='6' viewBox='0 0 100 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 3C8.33333 3 8.33333 0 16.6667 0C25 0 25 3 33.3333 3C41.6667 3 41.6667 0 50 0C58.3333 0 58.3333 3 66.6667 3C75 3 75 0 83.3333 0C91.6667 0 91.6667 3 100 3V6H0V3Z' fill='%23FF5C8D'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 20px 6px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .wavy-underline:hover:after {
+            opacity: 1;
+        }
+
+        .bg-confetti {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10H0V0H10V10Z' fill='%23FF5C8D' fill-opacity='0.1'/%3E%3Cpath d='M40 10H30V0H40V10Z' fill='%2300C2A8' fill-opacity='0.1'/%3E%3Cpath d='M30 20H20V10H30V20Z' fill='%23FFDE59' fill-opacity='0.1'/%3E%3Cpath d='M60 20H50V10H60V20Z' fill='%23B983FF' fill-opacity='0.1'/%3E%3Cpath d='M50 40H40V30H50V40Z' fill='%23FF5C8D' fill-opacity='0.1'/%3E%3Cpath d='M20 40H10V30H20V40Z' fill='%2355C1FF' fill-opacity='0.1'/%3E%3Cpath d='M30 50H20V40H30V50Z' fill='%23B983FF' fill-opacity='0.1'/%3E%3Cpath d='M60 50H50V40H60V50Z' fill='%23FFDE59' fill-opacity='0.1'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+<!-- Announcement Bar -->
+<div class="bg-[#B983FF] text-white text-center py-2 text-sm">
+    <div class="animate-pulse">
+        Free shipping on orders over $50 • 15% off when you sign up • Happiness guaranteed ✌️
+    </div>
+</div>
+
+<!-- Header/Navigation -->
+<header class="sticky top-0 bg-white z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-3 items-center py-4">
+            <!-- Left: Mobile menu button / Desktop Nav -->
+            <div class="flex items-center">
+                <button type="button" class="text-gray-600 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <nav class="hidden lg:flex items-center space-x-6 ml-6">
+                    <a href="#" class="wavy-underline text-gray-700 hover:text-[#FF5C8D] font-medium transition-colors py-1">Shop All</a>
+                    <a href="#" class="wavy-underline text-gray-700 hover:text-[#FF5C8D] font-medium transition-colors py-1">New In</a>
+                    <a href="#" class="wavy-underline text-gray-700 hover:text-[#FF5C8D] font-medium transition-colors py-1">Collections</a>
+                    <a href="#" class="wavy-underline text-gray-700 hover:text-[#FF5C8D] font-medium transition-colors py-1">Sale</a>
+                </nav>
+            </div>
+
+            <!-- Center: Logo -->
+            <div class="flex justify-center">
+                <a href="#" class="title-font text-3xl font-bold tracking-wide text-[#FF5C8D]">bloom</a>
+            </div>
+
+            <!-- Right: Icons -->
+            <div class="flex items-center justify-end space-x-5">
+                <button type="button" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button type="button" class="text-gray-600 hover:text-[#FF5C8D] transition-colors hidden lg:block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </button>
+                <a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-[#FF5C8D] text-white text-xs flex items-center justify-center">3</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="py-8 md:py-16 overflow-hidden bg-confetti">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-center md:text-left order-2 md:order-1">
+                <h5 class="title-font text-[#00C2A8] font-bold mb-3">New Collection</h5>
+                <h1 class="title-font text-4xl md:text-6xl font-bold mb-6 leading-tight">Add a pop of <span class="text-[#FF5C8D] relative">color
+                        <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 115 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 5.2C25 -1 89 -0.833 114 5.2" stroke="#FF5C8D" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span> to your life!</h1>
+                <p class="text-gray-600 mb-8 max-w-md mx-auto md:mx-0">Discover our vibrant collection of playful products designed to bring joy and creativity to your everyday moments.</p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <a href="#featured" class="inline-block bg-[#FF5C8D] text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow">
+                        Shop Now
+                    </a>
+                    <a href="#" class="inline-block bg-white border-2 border-[#00C2A8] text-[#00C2A8] px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-shadow">
+                        About Us
+                    </a>
+                </div>
+            </div>
+            <div class="relative order-1 md:order-2">
+                <div class="absolute -top-16 -right-16 w-28 h-28 bg-[#FFDE59] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+                <div class="absolute -bottom-8 -left-8 w-28 h-28 bg-[#FF5C8D] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+                <div class="relative z-10">
+                    <img src="/api/placeholder/600/600" alt="Hero Image" class="w-full h-auto blob-shape">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-end mb-10">
+            <h2 class="title-font text-3xl font-bold">Shop by Category</h2>
+            <a href="#" class="text-[#00C2A8] font-medium wavy-underline">View All</a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <!-- Category 1 -->
+            <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-2xl mb-3 bg-[#FFF1F5]">
+                    <div class="aspect-square flex items-center justify-center p-6">
+                        <img src="/api/placeholder/300/300" alt="Home Decor" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-semibold">Home Decor</h3>
+                </div>
+            </a>
+
+            <!-- Category 2 -->
+            <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-2xl mb-3 bg-[#F0FCFA]">
+                    <div class="aspect-square flex items-center justify-center p-6">
+                        <img src="/api/placeholder/300/300" alt="Stationery" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-semibold">Stationery</h3>
+                </div>
+            </a>
+
+            <!-- Category 3 -->
+            <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-2xl mb-3 bg-[#FFF9E6]">
+                    <div class="aspect-square flex items-center justify-center p-6">
+                        <img src="/api/placeholder/300/300" alt="Accessories" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-semibold">Accessories</h3>
+                </div>
+            </a>
+
+            <!-- Category 4 -->
+            <a href="#" class="group block">
+                <div class="relative overflow-hidden rounded-2xl mb-3 bg-[#F5F0FF]">
+                    <div class="aspect-square flex items-center justify-center p-6">
+                        <img src="/api/placeholder/300/300" alt="Gifts" class="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3 class="font-semibold">Gifts</h3>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Products -->
+<section id="featured" class="py-16 bg-confetti">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h5 class="title-font text-[#FF5C8D] font-bold mb-1">Staff Picks</h5>
+                <h2 class="title-font text-3xl font-bold">Featured Products</h2>
+            </div>
+            <a href="#" class="text-[#00C2A8] font-medium wavy-underline">View All</a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#FF5C8D] text-white text-xs px-4 py-1 rounded-full">New</span>
+                    <div class="aspect-square overflow-hidden">
+                        <img src="/api/placeholder/500/500" alt="Product 1" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Colorful Ceramic Vase</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Home Decor</p>
+                        <p class="font-bold text-[#FF5C8D]">$35</p>
+                    </div>
+                    <div class="mt-3 flex justify-between items-center">
+                        <div>
+                            <span class="color-dot bg-[#FF5C8D]"></span>
+                            <span class="color-dot bg-[#00C2A8]"></span>
+                            <span class="color-dot bg-[#FFDE59]"></span>
+                        </div>
+                        <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#FFDE59] text-gray-800 text-xs px-4 py-1 rounded-full">Bestseller</span>
+                    <div class="aspect-square overflow-hidden">
+                        <img src="/api/placeholder/500/500" alt="Product 2" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Rainbow Notebook Set</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Stationery</p>
+                        <p class="font-bold text-[#FF5C8D]">$24</p>
+                    </div>
+                    <div class="mt-3 flex justify-between items-center">
+                        <div>
+                            <span class="color-dot bg-[#55C1FF]"></span>
+                            <span class="color-dot bg-[#B983FF]"></span>
+                            <span class="color-dot bg-[#00C2A8]"></span>
+                        </div>
+                        <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#00C2A8] text-white text-xs px-4 py-1 rounded-full">Sale</span>
+                    <div class="aspect-square overflow-hidden">
+                        <img src="/api/placeholder/500/500" alt="Product 3" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Patterned Tote Bag</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Accessories</p>
+                        <div>
+                            <p class="font-bold text-[#FF5C8D]">$29</p>
+                            <p class="text-gray-400 text-xs line-through">$40</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 flex justify-between items-center">
+                        <div>
+                            <span class="color-dot bg-[#FFDE59]"></span>
+                            <span class="color-dot bg-[#FF5C8D]"></span>
+                        </div>
+                        <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <div class="aspect-square overflow-hidden">
+                        <img src="/api/placeholder/500/500" alt="Product 4" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Decorative Wall Art</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Home Decor</p>
+                        <p class="font-bold text-[#FF5C8D]">$45</p>
+                    </div>
+                    <div class="mt-3 flex justify-between items-center">
+                        <div>
+                            <span class="color-dot bg-[#B983FF]"></span>
+                            <span class="color-dot bg-[#55C1FF]"></span>
+                        </div>
+                        <button class="bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Full Width Promo -->
+<section class="py-16 bg-white overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="relative">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-[#00C2A8] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-[#FFDE59] rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+
+            <div class="relative rounded-3xl overflow-hidden shadow-lg">
+                <div class="absolute inset-0 bg-gradient-to-r from-[#FF5C8D]/90 to-[#B983FF]/90"></div>
+                <img src="/api/placeholder/1200/400" alt="Promo Banner" class="w-full h-auto object-cover mix-blend-overlay">
+
+                <div class="absolute inset-0 flex items-center">
+                    <div class="max-w-lg px-8 sm:px-12 text-white">
+                        <h5 class="title-font font-bold mb-2">Limited Time Offer</h5>
+                        <h2 class="title-font text-3xl sm:text-4xl font-bold mb-4">Summer Sale! <br>Get 25% Off Everything</h2>
+                        <p class="mb-6 text-white/90">Use code <span class="font-bold bg-white text-[#FF5C8D] px-2 py-1 rounded">SUMMER25</span> at checkout. Valid until August 31st.</p>
+                        <a href="#" class="inline-block bg-white text-[#FF5C8D] px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-shadow">
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals -->
+<section class="py-16 bg-confetti">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h5 class="title-font text-[#00C2A8] font-bold mb-1">Just Landed</h5>
+                <h2 class="title-font text-3xl font-bold">New Arrivals</h2>
+            </div>
+            <div class="flex space-x-2">
+                <button class="w-10 h-2 rounded-full bg-[#FF5C8D]"></button>
+                <button class="w-2 h-2 rounded-full bg-gray-300"></button>
+                <button class="w-2 h-2 rounded-full bg-gray-300"></button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- New Arrival 1 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#FF5C8D] text-white text-xs px-4 py-1 rounded-full">New</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="/api/placeholder/500/600" alt="New Arrival 1" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Colorful Plant Pot</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Home Decor</p>
+                        <p class="font-bold text-[#FF5C8D]">$28</p>
+                    </div>
+                    <button class="w-full mt-4 bg-[#00C2A8] text-white py-2 rounded-full font-medium hover:bg-[#00B09B] transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- New Arrival 2 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#FF5C8D] text-white text-xs px-4 py-1 rounded-full">New</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="/api/placeholder/500/600" alt="New Arrival 2" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Patterned Scarf</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Accessories</p>
+                        <p class="font-bold text-[#FF5C8D]">$32</p>
+                    </div>
+                    <button class="w-full mt-4 bg-[#00C2A8] text-white py-2 rounded-full font-medium hover:bg-[#00B09B] transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- New Arrival 3 -->
+            <div class="product-card group bg-white rounded-2xl shadow-md overflow-hidden">
+                <div class="relative">
+                    <span class="absolute top-3 left-3 z-10 bg-[#FF5C8D] text-white text-xs px-4 py-1 rounded-full">New</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="/api/placeholder/500/600" alt="New Arrival 3" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-800 mb-1">Illustrated Calendar</h3>
+                    <div class="flex justify-between items-center">
+                        <p class="text-gray-500 text-sm">Stationery</p>
+                        <p class="font-bold text-[#FF5C8D]">$22</p>
+                    </div>
+                    <button class="w-full mt-4 bg-[#00C2A8] text-white py-2 rounded-full font-medium hover:bg-[#00B09B] transition-colors">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Values -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-12">
+            <h5 class="title-font text-[#B983FF] font-bold mb-1">Our Values</h5>
+            <h2 class="title-font text-3xl font-bold mb-4">Why Shop With Us</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">We believe in creating products that bring joy to your everyday life while being mindful of our impact on the planet.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Value 1 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-[#FFF1F5] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#FF5C8D]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Eco-Friendly</h3>
+                <p class="text-gray-600">All our products are made with sustainable materials and eco-conscious practices.</p>
+            </div>
+
+            <!-- Value 2 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-[#F0FCFA] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#00C2A8]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Giving Back</h3>
+                <p class="text-gray-600">A portion of every purchase goes to supporting creative education programs for children.</p>
+            </div>
+
+            <!-- Value 3 -->
+            <div class="text-center">
+                <div class="w-16 h-16 bg-[#FFF9E6] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-[#FFDE59]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                    </svg>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Happiness Guarantee</h3>
+                <p class="text-gray-600">If you're not completely satisfied with your purchase, we'll make it right - no questions asked.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-16 bg-gradient-to-r from-[#FF5C8D] to-[#B983FF] text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-xl mx-auto text-center">
+            <div class="inline-block relative mb-6 title-font font-bold">
+                <svg class="w-14 h-14 absolute -top-8 -left-6 text-[#FFDE59] opacity-30" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 0L12.2451 6.90983H19.5106L13.6327 11.1803L15.8779 18.0902L10 13.8197L4.12215 18.0902L6.36729 11.1803L0.489435 6.90983H7.75486L10 0Z"/>
+                </svg>
+                <h2 class="title-font text-3xl font-bold mb-4">Stay in the Loop!</h2>
+            </div>
+            <p class="mb-8">Join our mailing list for exclusive offers, new product alerts, and a special 15% discount on your first order.</p>
+            <form class="flex flex-col sm:flex-row gap-4">
+                <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-full bg-white/20 border border-white/30 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50">
+                <button type="submit" class="bg-white text-[#FF5C8D] px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transition-shadow">
+                    Subscribe
+                </button>
+            </form>
+            <p class="text-white/70 text-sm mt-4">We respect your privacy and will never share your information.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Instagram Feed -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex justify-between items-end mb-10">
+            <div>
+                <h5 class="title-font text-[#B983FF] font-bold mb-1">@shopbloom</h5>
+                <h2 class="title-font text-3xl font-bold">Follow Us on Instagram</h2>
+            </div>
+            <a href="#" class="text-[#00C2A8] font-medium wavy-underline flex items-center">
+                View Profile
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#" class="block relative group overflow-hidden rounded-2xl">
+                <img src="/api/placeholder/300/300" alt="Instagram 1" class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FF5C8D]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden rounded-2xl">
+                <img src="/api/placeholder/300/300" alt="Instagram 2" class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FF5C8D]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden rounded-2xl">
+                <img src="/api/placeholder/300/300" alt="Instagram 3" class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FF5C8D]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden rounded-2xl">
+                <img src="/api/placeholder/300/300" alt="Instagram 4" class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#FF5C8D]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#F9F7FC] pt-16 pb-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div>
+                <a href="#" class="title-font text-2xl font-bold text-[#FF5C8D] inline-block mb-6">bloom</a>
+                <p class="text-gray-600 mb-6">Bringing color and joy to your everyday life through thoughtfully designed products that spark creativity and happiness.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-[#FF5C8D] transition-colors">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12c0-5.523-4.477-10-10-10z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#FF5C8D] transition-colors">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#FF5C8D] transition-colors">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                        </svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-[#FF5C8D] transition-colors">
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.374 17c-.897 0-1.626-.727-1.626-1.624s.729-1.624 1.626-1.624 1.626.727 1.626 1.624-.729 1.624-1.626 1.624zm3.885 0c-.03-3.022-2.485-5.474-5.511-5.504v-2.406c4.361.03 7.889 3.555 7.92 7.91h-2.409zm4.081 0c-.016-5.297-4.303-9.571-9.592-9.594v-2.406c6.623.023 11.985 5.384 12 12h-2.408z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="title-font font-bold text-lg mb-6">Shop</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">New Arrivals</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Bestsellers</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Home Decor</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Stationery</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Accessories</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Gifts</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Sale</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="title-font font-bold text-lg mb-6">About</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Our Story</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Values</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Blog</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Partnerships</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Careers</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="title-font font-bold text-lg mb-6">Help</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">FAQs</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Track Your Order</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-[#FF5C8D] transition-colors">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-500 text-sm mb-6 md:mb-0">&copy; 2025 Bloom. All rights reserved.</p>
+            <div class="flex flex-wrap justify-center space-x-6">
+                <img src="/api/placeholder/40/24" alt="Visa" class="h-8 mb-2">
+                <img src="/api/placeholder/40/24" alt="Mastercard" class="h-8 mb-2">
+                <img src="/api/placeholder/40/24" alt="PayPal" class="h-8 mb-2">
+                <img src="/api/placeholder/40/24" alt="Apple Pay" class="h-8 mb-2">
+                <img src="/api/placeholder/40/24" alt="Google Pay" class="h-8 mb-2">
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

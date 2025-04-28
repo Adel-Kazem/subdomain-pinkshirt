@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HABITAT | Modern Home & Furniture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Karla:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Lora', serif;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#f8f7f4] text-[#2b2a29]">
+<!-- Announcement Bar -->
+<div class="bg-[#614e42] text-white py-2 text-center text-sm font-light tracking-wider">
+    FREE SHIPPING ON ORDERS OVER $150 • EASY RETURNS • SUSTAINABLY SOURCED
+</div>
+
+<!-- Header/Navigation -->
+<header class="sticky top-0 z-50 bg-[#f8f7f4]/95 backdrop-blur-sm border-b border-[#e6e4e1]">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+            <a href="#" class="text-2xl font-medium tracking-tight text-[#614e42]">HABITAT</a>
+
+            <nav class="hidden md:flex space-x-8">
+                <div class="relative group">
+                    <a href="#" class="text-[#614e42] hover:text-[#d2765b] transition-colors text-sm uppercase tracking-widest">Shop</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-md rounded-sm overflow-hidden transform opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Furniture</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Decor</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Lighting</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Textiles</a>
+                    </div>
+                </div>
+                <div class="relative group">
+                    <a href="#" class="text-[#614e42] hover:text-[#d2765b] transition-colors text-sm uppercase tracking-widest">Rooms</a>
+                    <div class="absolute left-0 mt-2 w-48 bg-white shadow-md rounded-sm overflow-hidden transform opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Living Room</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Bedroom</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Dining Room</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-[#614e42] hover:bg-[#f8f7f4]">Office</a>
+                    </div>
+                </div>
+                <a href="#" class="text-[#614e42] hover:text-[#d2765b] transition-colors text-sm uppercase tracking-widest">Collections</a>
+                <a href="#" class="text-[#614e42] hover:text-[#d2765b] transition-colors text-sm uppercase tracking-widest">Sale</a>
+                <a href="#" class="text-[#614e42] hover:text-[#d2765b] transition-colors text-sm uppercase tracking-widest">Inspiration</a>
+            </nav>
+
+            <div class="flex items-center space-x-6">
+                <button class="text-[#614e42] hover:text-[#d2765b] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button class="text-[#614e42] hover:text-[#d2765b] transition-colors relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-[#d2765b] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">2</span>
+                </button>
+                <button class="md:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative">
+    <img src="https://images.unsplash.com/photo-1615529182904-14819c35db37" alt="Modern living room" class="w-full h-[80vh] object-cover object-center">
+    <div class="absolute inset-0 bg-black/25 flex items-center">
+        <div class="max-w-6xl mx-auto px-6 w-full">
+            <div class="max-w-xl text-center sm:text-left">
+                <h1 class="text-5xl md:text-6xl font-medium text-white mb-6 leading-tight text-shadow">Timeless Design for Modern Living</h1>
+                <p class="text-lg text-white/90 mb-8 text-shadow">Curated furniture and decor pieces that blend form and function.</p>
+                <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                    <a href="#new-arrivals" class="px-8 py-3 bg-[#d2765b] text-white hover:bg-[#c26b52] transition-colors font-medium">
+                        Shop New Arrivals
+                    </a>
+                    <a href="#collections" class="px-8 py-3 bg-transparent border border-white text-white hover:bg-white/10 transition-colors font-medium">
+                        View Collections
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Categories -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-medium text-center mb-12">Shop by Category</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Category 1 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2" alt="Furniture" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-medium text-center">Furniture</h3>
+                <p class="text-[#614e42] text-center mt-1">Thoughtfully designed for everyday living</p>
+            </a>
+
+            <!-- Category 2 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92" alt="Decor" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-medium text-center">Decor</h3>
+                <p class="text-[#614e42] text-center mt-1">The finishing touches for your space</p>
+            </a>
+
+            <!-- Category 3 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1613252036716-e1eeecd63aaa" alt="Lighting" class="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105">
+                </div>
+                <h3 class="text-xl font-medium text-center">Lighting</h3>
+                <p class="text-[#614e42] text-center mt-1">Illuminate your home with style</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals -->
+<section id="new-arrivals" class="py-16 bg-[#f8f7f4]">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-medium">New Arrivals</h2>
+            <a href="#" class="text-[#d2765b] font-medium hover:underline hidden md:block">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Product 1 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-4">
+                    <span class="absolute top-3 left-3 bg-[#d2765b] text-white text-xs px-3 py-1 z-10 uppercase tracking-wide font-medium">New</span>
+                    <img src="https://images.unsplash.com/photo-1580480055273-228ff5388ef8" alt="Ceramic Vase" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-[#614e42] px-6 py-2.5 uppercase tracking-wider text-xs font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Terra Ceramic Vase</h3>
+                <p class="text-[#d2765b] font-medium mb-3">$68.00</p>
+                <div class="flex space-x-2 mb-3">
+                    <button class="w-5 h-5 rounded-full bg-[#d2765b] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#d8c0a8] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#614e42] border-2 border-white"></button>
+                </div>
+                <button class="w-full bg-[#614e42] text-white py-3 hover:bg-[#503f36] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1530018607912-eff2daa1bac4" alt="Accent Chair" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-[#614e42] px-6 py-2.5 uppercase tracking-wider text-xs font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Oslo Accent Chair</h3>
+                <p class="text-[#d2765b] font-medium mb-3">$549.00</p>
+                <div class="flex space-x-2 mb-3">
+                    <button class="w-5 h-5 rounded-full bg-[#d8c0a8] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#a9aca9] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#232728] border-2 border-white"></button>
+                </div>
+                <button class="w-full bg-[#614e42] text-white py-3 hover:bg-[#503f36] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-4">
+                    <span class="absolute top-3 left-3 bg-[#d2765b] text-white text-xs px-3 py-1 z-10 uppercase tracking-wide font-medium">New</span>
+                    <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c" alt="Wooden Side Table" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-[#614e42] px-6 py-2.5 uppercase tracking-wider text-xs font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Nesting Side Tables</h3>
+                <p class="text-[#d2765b] font-medium mb-3">$289.00</p>
+                <div class="flex space-x-2 mb-3">
+                    <button class="w-5 h-5 rounded-full bg-[#bd9c7d] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#4d4943] border-2 border-white"></button>
+                </div>
+                <button class="w-full bg-[#614e42] text-white py-3 hover:bg-[#503f36] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85" alt="Pendant Light" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-[#614e42] px-6 py-2.5 uppercase tracking-wider text-xs font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Dome Pendant Light</h3>
+                <p class="text-[#d2765b] font-medium mb-3">$199.00</p>
+                <div class="flex space-x-2 mb-3">
+                    <button class="w-5 h-5 rounded-full bg-[#d9d0c7] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#232728] border-2 border-white"></button>
+                    <button class="w-5 h-5 rounded-full bg-[#c49a6c] border-2 border-white"></button>
+                </div>
+                <button class="w-full bg-[#614e42] text-white py-3 hover:bg-[#503f36] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center md:hidden">
+            <a href="#" class="inline-block px-6 py-3 border border-[#614e42] text-[#614e42] uppercase tracking-wider text-xs font-medium hover:bg-[#614e42] hover:text-white transition-colors">
+                View All Products
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Collection Feature -->
+<section id="collections" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1">
+                <h5 class="text-[#d2765b] uppercase tracking-widest text-sm font-medium mb-3">New Collection</h5>
+                <h2 class="text-3xl md:text-4xl font-medium mb-6">The Nordic Minimalist Collection</h2>
+                <p class="text-[#614e42] mb-6">Inspired by Scandinavian design principles, our Nordic Minimalist Collection brings together clean lines, natural materials, and functional beauty. Each piece is crafted to bring warmth and simplicity to your home.</p>
+                <div class="flex space-x-4 mb-8">
+                    <span class="inline-block px-3 py-1 bg-[#f8f7f4] text-[#614e42] text-sm">Sustainable Materials</span>
+                    <span class="inline-block px-3 py-1 bg-[#f8f7f4] text-[#614e42] text-sm">Timeless Design</span>
+                    <span class="inline-block px-3 py-1 bg-[#f8f7f4] text-[#614e42] text-sm">Artisan Crafted</span>
+                </div>
+                <a href="#" class="inline-block px-8 py-3 bg-[#614e42] text-white hover:bg-[#503f36] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Explore Collection
+                </a>
+            </div>
+            <div class="order-1 md:order-2">
+                <img src="https://images.unsplash.com/photo-1567016376408-0226e4d0b1ea" alt="Nordic Minimalist Collection" class="w-full rounded-lg shadow-md">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Shop by Room -->
+<section class="py-16 bg-[#f8f7f4]">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-medium text-center mb-12">Shop by Room</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Room 1 -->
+            <a href="#" class="block relative group overflow-hidden rounded-lg">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace" alt="Living Room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div class="absolute inset-0 flex items-end p-6">
+                    <div>
+                        <h3 class="text-2xl font-medium text-white mb-2">Living Room</h3>
+                        <span class="inline-flex items-center text-white text-sm">
+                                Shop Collection
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Room 2 -->
+            <a href="#" class="block relative group overflow-hidden rounded-lg">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0" alt="Bedroom" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div class="absolute inset-0 flex items-end p-6">
+                    <div>
+                        <h3 class="text-2xl font-medium text-white mb-2">Bedroom</h3>
+                        <span class="inline-flex items-center text-white text-sm">
+                                Shop Collection
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Room 3 -->
+            <a href="#" class="block relative group overflow-hidden rounded-lg">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1617104678098-de229db51392" alt="Dining Room" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                </div>
+                <div class="absolute inset-0 flex items-end p-6">
+                    <div>
+                        <h3 class="text-2xl font-medium text-white mb-2">Dining Room</h3>
+                        <span class="inline-flex items-center text-white text-sm">
+                                Shop Collection
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                            </span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Sustainability Section -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7" alt="Sustainable Materials" class="w-full rounded-lg shadow-md">
+            </div>
+            <div>
+                <h5 class="text-[#d2765b] uppercase tracking-widest text-sm font-medium mb-3">Our Commitment</h5>
+                <h2 class="text-3xl md:text-4xl font-medium mb-6">Sustainably Crafted, Responsibly Sourced</h2>
+                <p class="text-[#614e42] mb-4">At HABITAT, we believe beautiful design and environmental responsibility go hand in hand. Our furniture is crafted using sustainable materials, from responsibly harvested woods to recycled metals and organic textiles.</p>
+                <p class="text-[#614e42] mb-6">Every piece in our collection is designed to last, reducing waste and ensuring that your investment benefits both your home and the planet.</p>
+                <a href="#" class="inline-block px-8 py-3 bg-[#d2765b] text-white hover:bg-[#c26b52] transition-colors uppercase tracking-wider text-xs font-medium">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-16 bg-[#f8f7f4]">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-medium mb-12">Customer Reviews</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex text-[#d2765b] justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                </div>
+                <p class="text-[#614e42] mb-6">"The quality of our Oslo dining set exceeded our expectations. The craftsmanship is impeccable and the sustainably harvested wood gives us peace of mind."</p>
+                <p class="font-medium">- Emily T.</p>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex text-[#d2765b] justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                </div>
+                <p class="text-[#614e42] mb-6">"HABITAT's customer service was exceptional from start to finish. The delivery was seamless and my new sofa has transformed our living room."</p>
+                <p class="font-medium">- James K.</p>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-sm">
+                <div class="flex text-[#d2765b] justify-center mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                </div>
+                <p class="text-[#614e42] mb-6">"I've purchased several pieces from the Nordic Collection and they all complement each other beautifully. Timeless, well-made furniture that feels like it will last forever."</p>
+                <p class="font-medium">- Sarah M.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Instagram Feed -->
+<section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-medium mb-4">@habitat_home</h2>
+            <p class="text-[#614e42]">Follow us for daily inspiration</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1591825729269-caeb344f6df2" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1581428982868-e410dd047a90" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-[#d2765b]/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-16 bg-[#614e42] text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-medium mb-6">Stay Inspired</h2>
+        <p class="text-white/80 mb-10">Subscribe to receive new product announcements, exclusive offers, and home styling tips.</p>
+        <form class="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
+            <input type="email" placeholder="Your email address" class="flex-1 px-5 py-3 bg-white/10 border border-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#d2765b]">
+            <button type="submit" class="px-6 py-3 bg-[#d2765b] text-white font-medium hover:bg-[#c26b52] transition-colors uppercase tracking-wider text-xs">
+                Subscribe
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-[#f8f7f4] py-16">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="md:col-span-2">
+                <h3 class="text-2xl font-medium text-[#614e42] mb-6">HABITAT</h3>
+                <p class="text-[#614e42]/80 mb-6 max-w-md">Thoughtfully designed furniture and decor for modern living. Our pieces are crafted with sustainable materials and timeless design principles.</p>
+                <div class="flex space-x-5">
+                    <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm4.441 16.892c-2.102.144-6.784.144-8.883 0-2.276-.156-2.541-1.27-2.558-4.892.017-3.629.285-4.736 2.558-4.892 2.099-.144 6.782-.144 8.883 0 2.277.156 2.541 1.27 2.559 4.892-.018 3.629-.285 4.736-2.559 4.892zm-6.441-7.234l4.917 2.338-4.917 2.346v-4.684z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.472 15.61c-.633.059-1.269.061-1.902.004-.8-.074-1.338-.637-1.618-1.346-.118-.295-.154-.607-.168-.922-.05-1.062-.024-2.129.009-3.192.026-.784.165-1.562.611-2.253.467-.722 1.122-1.19 1.995-1.296.537-.065 1.084-.069 1.625-.063.626.007 1.252.038 1.878.045.6.006 1.154.202 1.605.584.797.67 1.08 1.561 1.106 2.547.009.39.002.779-.012 1.169-.055 1.337-.481 2.457-1.676 3.232-.252.163-.529.284-.812.376-.342.111-.689.112-1.04.143-.293.026-.593.048-.89.071.18-.002-.324.003 0 0zm8.961-8.631c-.091-.398-.252-.766-.493-1.101-.539-.741-1.24-1.221-2.143-1.371-.393-.065-.79-.089-1.188-.103-.562-.02-1.124-.006-1.685.015-.644.025-1.255.182-1.79.531-.524.341-.898.788-1.146 1.332-.219.478-.312.985-.381 1.498-.057.42-.057.854-.059 1.291.004.858-.005 1.718.033 2.573.038.861.244 1.69.731 2.438.345.529.794.963 1.367 1.263.518.272 1.083.386 1.661.417.583.031 1.167.028 1.751.02.596-.009 1.176-.139 1.708-.401.917-.449 1.513-1.155 1.831-2.117.167-.508.231-1.043.243-1.581.036-1.308.018-2.616.008-3.924-.006-.565-.082-1.124-.238-1.68l.001-.001z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Shop</h4>
+                <ul class="space-y-3 text-[#614e42]/80">
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">All Products</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Furniture</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Decor</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Lighting</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Textiles</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Sale</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Company</h4>
+                <ul class="space-y-3 text-[#614e42]/80">
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Our Story</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Design Philosophy</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Trade Program</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-[#d2765b] transition-colors">Careers</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-16 pt-8 border-t border-[#e6e4e1] flex flex-col md:flex-row justify-between items-center">
+            <p class="text-[#614e42]/60 text-sm">&copy; 2025 HABITAT. All rights reserved.</p>
+            <div class="mt-4 md:mt-0 flex space-x-6">
+                <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors text-sm">Privacy Policy</a>
+                <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors text-sm">Terms of Service</a>
+                <a href="#" class="text-[#614e42]/60 hover:text-[#d2765b] transition-colors text-sm">Shipping & Returns</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

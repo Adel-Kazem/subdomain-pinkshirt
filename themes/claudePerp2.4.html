@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOVA | Modern Home Furnishings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oranienbaum&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Oranienbaum', serif;
+        }
+        .hover-scale img {
+            transition: transform 0.7s ease;
+        }
+        .hover-scale:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+<!-- Announcement Bar -->
+<div class="bg-stone-900 text-stone-100 py-2 text-center text-sm tracking-wide">
+    FREE SHIPPING ON ORDERS OVER $150 • 30-DAY RETURNS
+</div>
+
+<!-- Header/Navigation -->
+<header class="sticky top-0 z-50 bg-stone-50/95 backdrop-blur-sm shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+            <a href="#" class="text-3xl text-stone-800 tracking-wider">NOVA</a>
+
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="text-stone-600 hover:text-stone-900 text-sm uppercase tracking-wider">Shop</a>
+                <a href="#" class="text-stone-600 hover:text-stone-900 text-sm uppercase tracking-wider">Collections</a>
+                <a href="#" class="text-stone-600 hover:text-stone-900 text-sm uppercase tracking-wider">New Arrivals</a>
+                <a href="#" class="text-stone-600 hover:text-stone-900 text-sm uppercase tracking-wider">About</a>
+            </nav>
+
+            <div class="flex items-center space-x-6">
+                <button class="text-stone-600 hover:text-stone-900 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </button>
+                <button class="text-stone-600 hover:text-stone-900 transition-colors relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                    <span class="absolute -top-2 -right-2 bg-stone-800 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+                </button>
+                <button class="md:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative">
+    <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45" alt="Modern Furniture" class="w-full h-[80vh] object-cover object-center">
+    <div class="absolute inset-0 bg-stone-900/30"></div>
+    <div class="absolute inset-0 flex items-center justify-center text-center">
+        <div class="max-w-3xl px-6">
+            <h1 class="text-5xl md:text-7xl text-white mb-6 leading-tight">Timeless Design for Modern Living</h1>
+            <p class="text-xl text-white/90 mb-10 max-w-xl mx-auto">Curated furniture and décor to transform your space.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#new-arrivals" class="px-8 py-4 bg-stone-50 text-stone-900 hover:bg-white transition-colors uppercase tracking-wider text-sm font-medium">
+                    Shop New Arrivals
+                </a>
+                <a href="#collections" class="px-8 py-4 bg-transparent border border-white text-white hover:bg-white/10 transition-colors uppercase tracking-wider text-sm font-medium">
+                    Explore Collections
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Collections Grid -->
+<section id="collections" class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl text-center mb-16">Our Collections</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Collection 1 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-5 hover-scale">
+                    <img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6" alt="Living Room" class="w-full aspect-[4/5] object-cover">
+                </div>
+                <h3 class="text-2xl mb-2 group-hover:text-stone-600 transition-colors">Living Room</h3>
+                <div class="flex items-center text-stone-600">
+                    <span>Explore Collection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:ml-2 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Collection 2 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-5 hover-scale">
+                    <img src="https://images.unsplash.com/photo-1617104678098-de229db51392" alt="Dining" class="w-full aspect-[4/5] object-cover">
+                </div>
+                <h3 class="text-2xl mb-2 group-hover:text-stone-600 transition-colors">Dining</h3>
+                <div class="flex items-center text-stone-600">
+                    <span>Explore Collection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:ml-2 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Collection 3 -->
+            <a href="#" class="group block">
+                <div class="overflow-hidden mb-5 hover-scale">
+                    <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0" alt="Bedroom" class="w-full aspect-[4/5] object-cover">
+                </div>
+                <h3 class="text-2xl mb-2 group-hover:text-stone-600 transition-colors">Bedroom</h3>
+                <div class="flex items-center text-stone-600">
+                    <span>Explore Collection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 group-hover:ml-2 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals Products -->
+<section id="new-arrivals" class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex justify-between items-center mb-12">
+            <h2 class="text-3xl md:text-4xl">New Arrivals</h2>
+            <a href="#" class="text-stone-800 hover:text-stone-600 transition-colors font-medium hidden md:block">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-x-6 gap-y-12">
+            <!-- Product 1 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-5">
+                    <span class="absolute top-3 left-3 bg-stone-900 text-white text-xs px-3 py-1 z-10">New</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c" alt="Modern Chair" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-stone-900 px-6 py-3 uppercase tracking-wider text-sm font-medium transform translate-y-8 group-hover:translate-y-0 transition-transform">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Curved Accent Chair</h3>
+                <p class="text-stone-900 font-medium mb-3">$649.00</p>
+                <button class="w-full border border-stone-900 py-3 hover:bg-stone-900 hover:text-white transition-colors uppercase tracking-wider text-sm font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-5">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594896055163-bad8248bd4c8" alt="Side Table" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-stone-900 px-6 py-3 uppercase tracking-wider text-sm font-medium transform translate-y-8 group-hover:translate-y-0 transition-transform">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Marble Side Table</h3>
+                <p class="text-stone-900 font-medium mb-3">$349.00</p>
+                <button class="w-full border border-stone-900 py-3 hover:bg-stone-900 hover:text-white transition-colors uppercase tracking-wider text-sm font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-5">
+                    <span class="absolute top-3 left-3 bg-stone-900 text-white text-xs px-3 py-1 z-10">New</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596079890744-c1a0462d0975" alt="Table Lamp" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-stone-900 px-6 py-3 uppercase tracking-wider text-sm font-medium transform translate-y-8 group-hover:translate-y-0 transition-transform">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Sculptural Table Lamp</h3>
+                <p class="text-stone-900 font-medium mb-3">$189.00</p>
+                <button class="w-full border border-stone-900 py-3 hover:bg-stone-900 hover:text-white transition-colors uppercase tracking-wider text-sm font-medium">
+                    Add to Cart
+                </button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="group">
+                <div class="relative overflow-hidden mb-5">
+                    <span class="absolute top-3 left-3 bg-stone-600 text-white text-xs px-3 py-1 z-10">Bestseller</span>
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92" alt="Ceramic Vase" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <button class="bg-white text-stone-900 px-6 py-3 uppercase tracking-wider text-sm font-medium transform translate-y-8 group-hover:translate-y-0 transition-transform">
+                            Quick View
+                        </button>
+                    </div>
+                </div>
+                <h3 class="font-medium text-lg mb-1">Ceramic Vase Set</h3>
+                <p class="text-stone-900 font-medium mb-3">$129.00</p>
+                <button class="w-full border border-stone-900 py-3 hover:bg-stone-900 hover:text-white transition-colors uppercase tracking-wider text-sm font-medium">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+
+        <div class="mt-12 text-center md:hidden">
+            <a href="#" class="inline-block px-6 py-3 border border-stone-900 text-stone-900 uppercase tracking-wider text-sm font-medium hover:bg-stone-900 hover:text-white transition-colors">
+                View All Products
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Banner -->
+<section class="py-12 md:py-20">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1600494603989-9650cf6ddd3d" alt="Featured Collection" class="w-full h-[500px] md:h-[600px] object-cover object-center">
+            <div class="absolute inset-0 bg-stone-900/40"></div>
+            <div class="absolute inset-0 flex items-center">
+                <div class="ml-12 md:ml-24 max-w-lg">
+                    <h2 class="text-4xl md:text-5xl text-white mb-6">The Minimalist Collection</h2>
+                    <p class="text-white/90 mb-8 text-lg">Clean lines, natural materials, and timeless design for the modern home.</p>
+                    <a href="#" class="inline-block bg-white text-stone-900 px-8 py-4 uppercase tracking-wider text-sm font-medium hover:bg-white/90 transition-colors">
+                        Shop the Collection
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Customer Favorites -->
+<section class="py-16 bg-stone-100">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl text-center mb-16">Customer Favorites</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Favorite Product 1 -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-shrink-0 w-full md:w-1/2">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e" alt="Modular Sofa" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-stone-600 text-sm uppercase tracking-wider mb-2">Most Loved</span>
+                    <h3 class="text-2xl mb-3">Modular Sofa System</h3>
+                    <div class="flex text-yellow-500 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-stone-900 font-medium mb-4">From $1,895.00</p>
+                    <p class="text-stone-600 mb-4">Customize your living space with our award-winning modular sofa system, available in multiple configurations.</p>
+                    <a href="#" class="text-stone-900 font-medium hover:text-stone-600 transition-colors">
+                            <span class="flex items-center">
+                                Shop Now
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Favorite Product 2 -->
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-shrink-0 w-full md:w-1/2">
+                    <div class="overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594026112284-02bb6f3352fe" alt="Dining Table" class="w-full aspect-square object-cover hover:scale-105 transition-transform duration-700">
+                    </div>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <span class="text-stone-600 text-sm uppercase tracking-wider mb-2">Top Rated</span>
+                    <h3 class="text-2xl mb-3">Solid Oak Dining Table</h3>
+                    <div class="flex text-yellow-500 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-stone-900 font-medium mb-4">$1,295.00</p>
+                    <p class="text-stone-600 mb-4">Crafted from sustainably sourced solid oak, this timeless dining table will be the centerpiece of your dining space for years to come.</p>
+                    <a href="#" class="text-stone-900 font-medium hover:text-stone-600 transition-colors">
+                            <span class="flex items-center">
+                                Shop Now
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-16 bg-stone-900 text-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl mb-6">Join Our Community</h2>
+        <p class="text-stone-300 mb-10">Subscribe to receive new product launches, styling tips, exclusive offers, and more.</p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            <input type="email" placeholder="Your email address" class="flex-1 px-5 py-3 bg-stone-800 border border-stone-700 text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 rounded-none">
+            <button type="submit" class="px-8 py-3 bg-white text-stone-900 hover:bg-stone-200 transition-colors uppercase tracking-wider text-sm font-medium">
+                Subscribe
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Instagram Feed -->
+<section class="py-12">
+    <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl text-center mb-10">@novahome</h2>
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1589834390005-5d4fb9bf3d32" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1611967164521-abae8fba4668" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+            <a href="#" class="block relative group overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467" class="w-full aspect-square object-cover">
+                <div class="absolute inset-0 bg-stone-900/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-stone-100 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+            <div class="md:col-span-2">
+                <h3 class="text-2xl mb-6">NOVA</h3>
+                <p class="text-stone-600 mb-6 max-w-md">Modern, timeless furniture and home décor for the design-conscious customer. Quality craftsmanship that stands the test of time.</p>
+                <div class="flex space-x-5">
+                    <a href="#" class="text-stone-600 hover:text-stone-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-stone-600 hover:text-stone-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-stone-600 hover:text-stone-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-stone-600 hover:text-stone-900 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2.917 16.083c-2.258 0-4.083-1.825-4.083-4.083s1.825-4.083 4.083-4.083c1.103 0 2.024.402 2.735 1.067l-1.107 1.068c-.304-.292-.834-.63-1.628-.63-1.394 0-2.531 1.155-2.531 2.579 0 1.424 1.138 2.579 2.531 2.579 1.616 0 2.224-1.162 2.316-1.762h-2.316v-1.4h3.855c.036.204.064.408.064.677.001 2.332-1.563 3.988-3.919 3.988zm9.917-3.5h-1.75v1.75h-1.167v-1.75h-1.75v-1.166h1.75v-1.75h1.167v1.75h1.75v1.166z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="uppercase text-sm tracking-wider font-medium mb-5">Shop</h4>
+                <ul class="space-y-3 text-stone-600">
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">All Products</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Living Room</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Dining</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Bedroom</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Home Office</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Accessories</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="uppercase text-sm tracking-wider font-medium mb-5">Company</h4>
+                <ul class="space-y-3 text-stone-600">
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">About Us</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Design Philosophy</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Contact</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-stone-900 transition-colors">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-stone-200 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-stone-500 text-sm">&copy; 2025 NOVA. All rights reserved.</p>
+            <div class="mt-4 md:mt-0 flex flex-wrap space-x-6">
+                <a href="#" class="text-stone-500 hover:text-stone-900 transition-colors text-sm">Privacy Policy</a>
+                <a href="#" class="text-stone-500 hover:text-stone-900 transition-colors text-sm">Terms of Service</a>
+                <a href="#" class="text-stone-500 hover:text-stone-900 transition-colors text-sm">Accessibility</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
